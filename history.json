@@ -109,5 +109,33 @@
     "elapsedMs": 13612,
     "minted": "x_addterm_grow",
     "milestones": []
+  },
+  {
+    "gen": 5,
+    "date": "2026-09-17",
+    "seed": 2745314549,
+    "label": "genesis",
+    "evaluations": 12247,
+    "proposed": 20356,
+    "accepted": false,
+    "op": null,
+    "opLabel": null,
+    "trainBefore": 3.117,
+    "trainAfter": 3.117,
+    "valAfter": 4.0465,
+    "testBefore": 4.0983,
+    "testAfter": 4.0983,
+    "vetoed": 0,
+    "contenders": 0,
+    "size": 35,
+    "sigma": 0.3985,
+    "budget": 17146,
+    "hitRate": 0.0001,
+    "cellHits": 2,
+    "elapsedMs": 19149,
+    "minted": "x_crossover_addterm",
+    "milestones": [
+      "test-holds"
+    ]
   }
 ]
