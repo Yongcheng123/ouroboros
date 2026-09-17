@@ -269,5 +269,31 @@
     "milestones": [
       "gen-10"
     ]
+  },
+  {
+    "gen": 11,
+    "date": "2026-09-17",
+    "seed": 3829580104,
+    "label": "daily",
+    "evaluations": 60000,
+    "proposed": 91642,
+    "accepted": false,
+    "op": null,
+    "opLabel": null,
+    "trainBefore": 3.117,
+    "trainAfter": 3.117,
+    "valAfter": 4.0465,
+    "testBefore": 4.0983,
+    "testAfter": 4.0983,
+    "vetoed": 0,
+    "contenders": 0,
+    "size": 35,
+    "sigma": 2,
+    "budget": 60000,
+    "hitRate": 0,
+    "cellHits": 0,
+    "elapsedMs": 211335,
+    "minted": null,
+    "milestones": []
   }
 ]
