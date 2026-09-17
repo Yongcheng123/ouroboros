@@ -1,0 +1,973 @@
+{
+  "schema": 1,
+  "project": {
+    "name": "OUROBOROS",
+    "tagline": "一个每天重写自己的网站",
+    "born": "2026-09-17",
+    "subject": "online-bin-packing",
+    "repo": "https://github.com/Yongcheng123/ouroboros",
+    "site": "https://yongcheng123.github.io/ouroboros/"
+  },
+  "generation": 0,
+  "suiteFingerprint": "af6d6118",
+  "champion": {
+    "expr": [
+      "neg",
+      [
+        "v",
+        "g"
+      ]
+    ],
+    "size": 2,
+    "depth": 2,
+    "train": {
+      "excess": 4.1247,
+      "perFamily": {
+        "weibull": 4.7264,
+        "uniform": 4.903,
+        "triplet": 6.0978,
+        "bimodal": 0.7715
+      },
+      "perInstance": [
+        {
+          "id": "weibull-t1",
+          "bins": 210,
+          "lowerBound": 201,
+          "excess": 4.4776
+        },
+        {
+          "id": "weibull-t2",
+          "bins": 211,
+          "lowerBound": 201,
+          "excess": 4.9751
+        },
+        {
+          "id": "uniform-t1",
+          "bins": 217,
+          "lowerBound": 207,
+          "excess": 4.8309
+        },
+        {
+          "id": "uniform-t2",
+          "bins": 211,
+          "lowerBound": 201,
+          "excess": 4.9751
+        },
+        {
+          "id": "triplet-t1",
+          "bins": 175,
+          "lowerBound": 165,
+          "excess": 6.0606
+        },
+        {
+          "id": "triplet-t2",
+          "bins": 173,
+          "lowerBound": 163,
+          "excess": 6.135
+        },
+        {
+          "id": "bimodal-t1",
+          "bins": 124,
+          "lowerBound": 123,
+          "excess": 0.813
+        },
+        {
+          "id": "bimodal-t2",
+          "bins": 138,
+          "lowerBound": 137,
+          "excess": 0.7299
+        }
+      ]
+    },
+    "val": {
+      "excess": 4.2396,
+      "perFamily": {
+        "weibull": 5.0251,
+        "uniform": 5.0251,
+        "triplet": 6.1728,
+        "bimodal": 0.7353
+      },
+      "perInstance": [
+        {
+          "id": "weibull-g1",
+          "bins": 209,
+          "lowerBound": 199,
+          "excess": 5.0251
+        },
+        {
+          "id": "uniform-g1",
+          "bins": 209,
+          "lowerBound": 199,
+          "excess": 5.0251
+        },
+        {
+          "id": "triplet-g1",
+          "bins": 172,
+          "lowerBound": 162,
+          "excess": 6.1728
+        },
+        {
+          "id": "bimodal-g1",
+          "bins": 137,
+          "lowerBound": 136,
+          "excess": 0.7353
+        }
+      ]
+    },
+    "test": {
+      "excess": 4.4933,
+      "perFamily": {
+        "weibull": 5.2634,
+        "uniform": 5.3649,
+        "triplet": 6.1339,
+        "bimodal": 1.2108
+      },
+      "perInstance": [
+        {
+          "id": "weibull-v1",
+          "bins": 212,
+          "lowerBound": 202,
+          "excess": 4.9505
+        },
+        {
+          "id": "weibull-v2",
+          "bins": 217,
+          "lowerBound": 206,
+          "excess": 5.3398
+        },
+        {
+          "id": "weibull-v3",
+          "bins": 211,
+          "lowerBound": 200,
+          "excess": 5.5
+        },
+        {
+          "id": "uniform-v1",
+          "bins": 215,
+          "lowerBound": 203,
+          "excess": 5.9113
+        },
+        {
+          "id": "uniform-v2",
+          "bins": 211,
+          "lowerBound": 201,
+          "excess": 4.9751
+        },
+        {
+          "id": "uniform-v3",
+          "bins": 202,
+          "lowerBound": 192,
+          "excess": 5.2083
+        },
+        {
+          "id": "triplet-v1",
+          "bins": 174,
+          "lowerBound": 164,
+          "excess": 6.0976
+        },
+        {
+          "id": "triplet-v2",
+          "bins": 171,
+          "lowerBound": 162,
+          "excess": 5.5556
+        },
+        {
+          "id": "triplet-v3",
+          "bins": 174,
+          "lowerBound": 163,
+          "excess": 6.7485
+        },
+        {
+          "id": "bimodal-v1",
+          "bins": 130,
+          "lowerBound": 129,
+          "excess": 0.7752
+        },
+        {
+          "id": "bimodal-v2",
+          "bins": 131,
+          "lowerBound": 131,
+          "excess": 0
+        },
+        {
+          "id": "bimodal-v3",
+          "bins": 144,
+          "lowerBound": 140,
+          "excess": 2.8571
+        }
+      ]
+    },
+    "bornGen": 0,
+    "bornOp": "seed",
+    "bornDate": "2026-09-17",
+    "source": "seed"
+  },
+  "elites": [
+    {
+      "id": "1-3",
+      "lo": 1,
+      "hi": 3,
+      "expr": null
+    },
+    {
+      "id": "4-6",
+      "lo": 4,
+      "hi": 6,
+      "expr": null
+    },
+    {
+      "id": "7-10",
+      "lo": 7,
+      "hi": 10,
+      "expr": null
+    },
+    {
+      "id": "11-15",
+      "lo": 11,
+      "hi": 15,
+      "expr": null
+    },
+    {
+      "id": "16-22",
+      "lo": 16,
+      "hi": 22,
+      "expr": null
+    },
+    {
+      "id": "23-32",
+      "lo": 23,
+      "hi": 32,
+      "expr": null
+    },
+    {
+      "id": "33-48",
+      "lo": 33,
+      "hi": 48,
+      "expr": null
+    },
+    {
+      "id": "49-64",
+      "lo": 49,
+      "hi": 64,
+      "expr": null
+    }
+  ],
+  "search": {
+    "operators": [
+      {
+        "id": "point",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "subtree",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "grow",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "prune",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "jitter",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "crossover",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "addterm",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      },
+      {
+        "id": "simplify",
+        "kind": "base",
+        "born": 0,
+        "q": 1,
+        "weight": 0.125,
+        "attempts": 0,
+        "hits": 0,
+        "bestGain": 0
+      }
+    ],
+    "pairs": {},
+    "composites": 0,
+    "sigma": 0.3,
+    "stagnation": 0,
+    "acceptMargin": 0.004,
+    "budget": {
+      "evaluations": 12000,
+      "min": 6000,
+      "max": 60000
+    },
+    "caps": {
+      "maxSize": 64,
+      "maxDepth": 14
+    }
+  },
+  "baselines": {
+    "nextFit": {
+      "train": {
+        "excess": 26.859,
+        "perFamily": {
+          "weibull": 27.8607,
+          "uniform": 32.1184,
+          "triplet": 19.8085,
+          "bimodal": 27.6482
+        }
+      },
+      "val": {
+        "excess": 25.2889,
+        "perFamily": {
+          "weibull": 27.6382,
+          "uniform": 29.1457,
+          "triplet": 17.9012,
+          "bimodal": 26.4706
+        }
+      },
+      "test": {
+        "excess": 26.2178,
+        "perFamily": {
+          "weibull": 27.9545,
+          "uniform": 30.7007,
+          "triplet": 19.0126,
+          "bimodal": 27.2034
+        }
+      }
+    },
+    "firstFit": {
+      "train": {
+        "excess": 4.4619,
+        "perFamily": {
+          "weibull": 4.9751,
+          "uniform": 5.3933,
+          "triplet": 6.7076,
+          "bimodal": 0.7715
+        },
+        "perInstance": [
+          {
+            "id": "weibull-t1",
+            "bins": 210,
+            "lowerBound": 201,
+            "excess": 4.4776
+          },
+          {
+            "id": "weibull-t2",
+            "bins": 212,
+            "lowerBound": 201,
+            "excess": 5.4726
+          },
+          {
+            "id": "uniform-t1",
+            "bins": 218,
+            "lowerBound": 207,
+            "excess": 5.314
+          },
+          {
+            "id": "uniform-t2",
+            "bins": 212,
+            "lowerBound": 201,
+            "excess": 5.4726
+          },
+          {
+            "id": "triplet-t1",
+            "bins": 176,
+            "lowerBound": 165,
+            "excess": 6.6667
+          },
+          {
+            "id": "triplet-t2",
+            "bins": 174,
+            "lowerBound": 163,
+            "excess": 6.7485
+          },
+          {
+            "id": "bimodal-t1",
+            "bins": 124,
+            "lowerBound": 123,
+            "excess": 0.813
+          },
+          {
+            "id": "bimodal-t2",
+            "bins": 138,
+            "lowerBound": 137,
+            "excess": 0.7299
+          }
+        ]
+      },
+      "val": {
+        "excess": 4.7034,
+        "perFamily": {
+          "weibull": 5.0251,
+          "uniform": 5.5276,
+          "triplet": 6.7901,
+          "bimodal": 1.4706
+        },
+        "perInstance": [
+          {
+            "id": "weibull-g1",
+            "bins": 209,
+            "lowerBound": 199,
+            "excess": 5.0251
+          },
+          {
+            "id": "uniform-g1",
+            "bins": 210,
+            "lowerBound": 199,
+            "excess": 5.5276
+          },
+          {
+            "id": "triplet-g1",
+            "bins": 173,
+            "lowerBound": 162,
+            "excess": 6.7901
+          },
+          {
+            "id": "bimodal-g1",
+            "bins": 138,
+            "lowerBound": 136,
+            "excess": 1.4706
+          }
+        ]
+      },
+      "test": {
+        "excess": 4.6699,
+        "perFamily": {
+          "weibull": 5.5951,
+          "uniform": 5.0238,
+          "triplet": 6.3371,
+          "bimodal": 1.7236
+        },
+        "perInstance": [
+          {
+            "id": "weibull-v1",
+            "bins": 213,
+            "lowerBound": 202,
+            "excess": 5.4455
+          },
+          {
+            "id": "weibull-v2",
+            "bins": 217,
+            "lowerBound": 206,
+            "excess": 5.3398
+          },
+          {
+            "id": "weibull-v3",
+            "bins": 212,
+            "lowerBound": 200,
+            "excess": 6
+          },
+          {
+            "id": "uniform-v1",
+            "bins": 216,
+            "lowerBound": 203,
+            "excess": 6.4039
+          },
+          {
+            "id": "uniform-v2",
+            "bins": 209,
+            "lowerBound": 201,
+            "excess": 3.9801
+          },
+          {
+            "id": "uniform-v3",
+            "bins": 201,
+            "lowerBound": 192,
+            "excess": 4.6875
+          },
+          {
+            "id": "triplet-v1",
+            "bins": 175,
+            "lowerBound": 164,
+            "excess": 6.7073
+          },
+          {
+            "id": "triplet-v2",
+            "bins": 171,
+            "lowerBound": 162,
+            "excess": 5.5556
+          },
+          {
+            "id": "triplet-v3",
+            "bins": 174,
+            "lowerBound": 163,
+            "excess": 6.7485
+          },
+          {
+            "id": "bimodal-v1",
+            "bins": 131,
+            "lowerBound": 129,
+            "excess": 1.5504
+          },
+          {
+            "id": "bimodal-v2",
+            "bins": 132,
+            "lowerBound": 131,
+            "excess": 0.7634
+          },
+          {
+            "id": "bimodal-v3",
+            "bins": 144,
+            "lowerBound": 140,
+            "excess": 2.8571
+          }
+        ]
+      }
+    },
+    "worstFit": {
+      "train": {
+        "excess": 11.6195,
+        "perFamily": {
+          "weibull": 12.6866,
+          "uniform": 14.4819,
+          "triplet": 10.0521,
+          "bimodal": 9.2576
+        },
+        "perInstance": [
+          {
+            "id": "weibull-t1",
+            "bins": 229,
+            "lowerBound": 201,
+            "excess": 13.9303
+          },
+          {
+            "id": "weibull-t2",
+            "bins": 224,
+            "lowerBound": 201,
+            "excess": 11.4428
+          },
+          {
+            "id": "uniform-t1",
+            "bins": 234,
+            "lowerBound": 207,
+            "excess": 13.0435
+          },
+          {
+            "id": "uniform-t2",
+            "bins": 233,
+            "lowerBound": 201,
+            "excess": 15.9204
+          },
+          {
+            "id": "triplet-t1",
+            "bins": 184,
+            "lowerBound": 165,
+            "excess": 11.5152
+          },
+          {
+            "id": "triplet-t2",
+            "bins": 177,
+            "lowerBound": 163,
+            "excess": 8.589
+          },
+          {
+            "id": "bimodal-t1",
+            "bins": 135,
+            "lowerBound": 123,
+            "excess": 9.7561
+          },
+          {
+            "id": "bimodal-t2",
+            "bins": 149,
+            "lowerBound": 137,
+            "excess": 8.7591
+          }
+        ]
+      },
+      "val": {
+        "excess": 11.6056,
+        "perFamily": {
+          "weibull": 13.0653,
+          "uniform": 13.5678,
+          "triplet": 8.0247,
+          "bimodal": 11.7647
+        },
+        "perInstance": [
+          {
+            "id": "weibull-g1",
+            "bins": 225,
+            "lowerBound": 199,
+            "excess": 13.0653
+          },
+          {
+            "id": "uniform-g1",
+            "bins": 226,
+            "lowerBound": 199,
+            "excess": 13.5678
+          },
+          {
+            "id": "triplet-g1",
+            "bins": 175,
+            "lowerBound": 162,
+            "excess": 8.0247
+          },
+          {
+            "id": "bimodal-g1",
+            "bins": 152,
+            "lowerBound": 136,
+            "excess": 11.7647
+          }
+        ]
+      },
+      "test": {
+        "excess": 12.0093,
+        "perFamily": {
+          "weibull": 12.9895,
+          "uniform": 14.5621,
+          "triplet": 8.9957,
+          "bimodal": 11.4899
+        },
+        "perInstance": [
+          {
+            "id": "weibull-v1",
+            "bins": 227,
+            "lowerBound": 202,
+            "excess": 12.3762
+          },
+          {
+            "id": "weibull-v2",
+            "bins": 234,
+            "lowerBound": 206,
+            "excess": 13.5922
+          },
+          {
+            "id": "weibull-v3",
+            "bins": 226,
+            "lowerBound": 200,
+            "excess": 13
+          },
+          {
+            "id": "uniform-v1",
+            "bins": 235,
+            "lowerBound": 203,
+            "excess": 15.7635
+          },
+          {
+            "id": "uniform-v2",
+            "bins": 232,
+            "lowerBound": 201,
+            "excess": 15.4229
+          },
+          {
+            "id": "uniform-v3",
+            "bins": 216,
+            "lowerBound": 192,
+            "excess": 12.5
+          },
+          {
+            "id": "triplet-v1",
+            "bins": 179,
+            "lowerBound": 164,
+            "excess": 9.1463
+          },
+          {
+            "id": "triplet-v2",
+            "bins": 175,
+            "lowerBound": 162,
+            "excess": 8.0247
+          },
+          {
+            "id": "triplet-v3",
+            "bins": 179,
+            "lowerBound": 163,
+            "excess": 9.816
+          },
+          {
+            "id": "bimodal-v1",
+            "bins": 145,
+            "lowerBound": 129,
+            "excess": 12.4031
+          },
+          {
+            "id": "bimodal-v2",
+            "bins": 144,
+            "lowerBound": 131,
+            "excess": 9.9237
+          },
+          {
+            "id": "bimodal-v3",
+            "bins": 157,
+            "lowerBound": 140,
+            "excess": 12.1429
+          }
+        ]
+      }
+    },
+    "bestFit": {
+      "train": {
+        "excess": 4.1247,
+        "perFamily": {
+          "weibull": 4.7264,
+          "uniform": 4.903,
+          "triplet": 6.0978,
+          "bimodal": 0.7715
+        },
+        "perInstance": [
+          {
+            "id": "weibull-t1",
+            "bins": 210,
+            "lowerBound": 201,
+            "excess": 4.4776
+          },
+          {
+            "id": "weibull-t2",
+            "bins": 211,
+            "lowerBound": 201,
+            "excess": 4.9751
+          },
+          {
+            "id": "uniform-t1",
+            "bins": 217,
+            "lowerBound": 207,
+            "excess": 4.8309
+          },
+          {
+            "id": "uniform-t2",
+            "bins": 211,
+            "lowerBound": 201,
+            "excess": 4.9751
+          },
+          {
+            "id": "triplet-t1",
+            "bins": 175,
+            "lowerBound": 165,
+            "excess": 6.0606
+          },
+          {
+            "id": "triplet-t2",
+            "bins": 173,
+            "lowerBound": 163,
+            "excess": 6.135
+          },
+          {
+            "id": "bimodal-t1",
+            "bins": 124,
+            "lowerBound": 123,
+            "excess": 0.813
+          },
+          {
+            "id": "bimodal-t2",
+            "bins": 138,
+            "lowerBound": 137,
+            "excess": 0.7299
+          }
+        ]
+      },
+      "val": {
+        "excess": 4.2396,
+        "perFamily": {
+          "weibull": 5.0251,
+          "uniform": 5.0251,
+          "triplet": 6.1728,
+          "bimodal": 0.7353
+        },
+        "perInstance": [
+          {
+            "id": "weibull-g1",
+            "bins": 209,
+            "lowerBound": 199,
+            "excess": 5.0251
+          },
+          {
+            "id": "uniform-g1",
+            "bins": 209,
+            "lowerBound": 199,
+            "excess": 5.0251
+          },
+          {
+            "id": "triplet-g1",
+            "bins": 172,
+            "lowerBound": 162,
+            "excess": 6.1728
+          },
+          {
+            "id": "bimodal-g1",
+            "bins": 137,
+            "lowerBound": 136,
+            "excess": 0.7353
+          }
+        ]
+      },
+      "test": {
+        "excess": 4.4933,
+        "perFamily": {
+          "weibull": 5.2634,
+          "uniform": 5.3649,
+          "triplet": 6.1339,
+          "bimodal": 1.2108
+        },
+        "perInstance": [
+          {
+            "id": "weibull-v1",
+            "bins": 212,
+            "lowerBound": 202,
+            "excess": 4.9505
+          },
+          {
+            "id": "weibull-v2",
+            "bins": 217,
+            "lowerBound": 206,
+            "excess": 5.3398
+          },
+          {
+            "id": "weibull-v3",
+            "bins": 211,
+            "lowerBound": 200,
+            "excess": 5.5
+          },
+          {
+            "id": "uniform-v1",
+            "bins": 215,
+            "lowerBound": 203,
+            "excess": 5.9113
+          },
+          {
+            "id": "uniform-v2",
+            "bins": 211,
+            "lowerBound": 201,
+            "excess": 4.9751
+          },
+          {
+            "id": "uniform-v3",
+            "bins": 202,
+            "lowerBound": 192,
+            "excess": 5.2083
+          },
+          {
+            "id": "triplet-v1",
+            "bins": 174,
+            "lowerBound": 164,
+            "excess": 6.0976
+          },
+          {
+            "id": "triplet-v2",
+            "bins": 171,
+            "lowerBound": 162,
+            "excess": 5.5556
+          },
+          {
+            "id": "triplet-v3",
+            "bins": 174,
+            "lowerBound": 163,
+            "excess": 6.7485
+          },
+          {
+            "id": "bimodal-v1",
+            "bins": 130,
+            "lowerBound": 129,
+            "excess": 0.7752
+          },
+          {
+            "id": "bimodal-v2",
+            "bins": 131,
+            "lowerBound": 131,
+            "excess": 0
+          },
+          {
+            "id": "bimodal-v3",
+            "bins": 144,
+            "lowerBound": 140,
+            "excess": 2.8571
+          }
+        ]
+      }
+    },
+    "bestFitDecreasing": {
+      "train": {
+        "excess": 2.8222,
+        "perFamily": {
+          "weibull": 0.2488,
+          "uniform": 0.9806,
+          "triplet": 10.0595,
+          "bimodal": 0
+        }
+      },
+      "val": {
+        "excess": 2.9716,
+        "perFamily": {
+          "weibull": 0.5025,
+          "uniform": 1.5075,
+          "triplet": 9.8765,
+          "bimodal": 0
+        }
+      },
+      "test": {
+        "excess": 2.9238,
+        "perFamily": {
+          "weibull": 0.4935,
+          "uniform": 1.1809,
+          "triplet": 10.0207,
+          "bimodal": 0
+        }
+      }
+    }
+  },
+  "milestones": [],
+  "log": [],
+  "stats": {
+    "generations": 0,
+    "totalEvaluations": 0,
+    "totalProposed": 0,
+    "totalAccepted": 0,
+    "totalRejected": 0,
+    "totalVetoed": 0,
+    "llmProposals": 0,
+    "llmAccepted": 0
+  },
+  "lastRun": {
+    "date": "2026-09-17",
+    "generation": 0,
+    "seed": 0,
+    "evaluations": 0,
+    "proposed": 0,
+    "accepted": false,
+    "elapsedMs": 0,
+    "integrity": "ok",
+    "source": "genesis"
+  }
+}

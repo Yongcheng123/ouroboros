@@ -1,0 +1,35 @@
+name: verify
+
+# The L3 gate. Engine source is the one layer the engine may not rewrite, so
+# changes to it arrive as pull requests and have to clear the same six checks
+# the nightly job clears -- including the byte-for-byte re-render, which means
+# any change to render.mjs must ship with a regenerated index.html.
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'engine/**'
+      - 'tools/**'
+      - '.github/workflows/verify.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # replay needs HEAD~1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: selfcheck
+        run: node tools/selfcheck.mjs
+
+      # Replaying a recorded generation from its seed must land on the same
+      # champion. If it does not, something non-deterministic crept in and the
+      # entire lineage stopped being evidence.
+      - name: Replay determinism
+        run: node tools/replay.mjs

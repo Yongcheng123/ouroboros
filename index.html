@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 0 代 · OUROBOROS</title>
+<meta name="description" content="一个每天重写自己的网站。在线装箱问题上的递归自我改进，第 0 代，训练集超额率 4.125%。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237cf5a8' stroke-width='3.5' stroke-dasharray='58 12'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0c10; --panel:#11161c; --panel2:#151b23; --line:#222b36;
+  --ink:#e7ebf1; --dim:#8a95a4; --faint:#5d6674;
+  --acc:#7cf5a8; --acc2:#6cb6ff; --acc3:#c9a2ff; --acc4:#ffd479;
+  --warn:#ffb454; --bad:#ff7b72; --good:#7cf5a8;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#fbfbfc; --panel:#ffffff; --panel2:#f4f6f8; --line:#e2e6ec;
+    --ink:#121820; --dim:#5f6b7a; --faint:#8b95a3;
+    --acc:#10894f; --acc2:#1f6feb; --acc3:#7c4dd6; --acc4:#a8730a;
+    --warn:#a8730a; --bad:#c9372c; --good:#10894f;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.75;letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px 96px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;line-height:1.6}
+.dim{color:var(--dim)}
+.good{color:var(--good)} .bad{color:var(--bad)}
+.warnnum{color:var(--warn)}
+.strong{font-weight:650}
+code{font-family:var(--mono);font-size:.9em;background:var(--panel2);
+  padding:.12em .4em;border-radius:4px;border:1px solid var(--line)}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:16px 18px;overflow-x:auto;font-size:13.5px;line-height:1.7}
+pre code{background:none;border:none;padding:0}
+a{color:var(--acc2);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:currentColor}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+  flex-wrap:wrap;padding:52px 0 28px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:16px}
+.ring{width:44px;height:44px;border-radius:50%;flex:0 0 44px;
+  border:4px solid var(--acc);
+  border-right-color:transparent;transform:rotate(-20deg)}
+h1{font-size:30px;margin:0;letter-spacing:.14em;font-weight:600}
+.tag{margin:2px 0 0;color:var(--dim);font-size:14px}
+.genbox{text-align:right}
+.genno{font-size:34px;font-weight:600;letter-spacing:.06em;color:var(--acc);line-height:1.1}
+.gendate{color:var(--dim);font-size:13px}
+.genstate{margin-top:6px}
+
+/* hero */
+.hero{padding:34px 0 10px}
+.lede{font-size:19px;line-height:1.85;margin:0 0 28px;max-width:70ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.sk{font-size:12.5px;color:var(--dim);letter-spacing:.04em}
+.sv{font-size:26px;font-weight:600;line-height:1.3;margin:2px 0}
+.ss{font-size:12.5px;color:var(--faint)}
+
+/* toc */
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;
+  margin:34px 0 8px;padding:12px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);font-size:13.5px}
+.toc span{color:var(--faint);font-size:12px;letter-spacing:.1em;margin-right:4px}
+.toc a{color:var(--dim)}
+.toc a:hover{color:var(--acc)}
+
+/* sections */
+section{padding:44px 0 8px;scroll-margin-top:20px}
+h2{font-size:24px;margin:0 0 18px;font-weight:600;display:flex;align-items:baseline;gap:14px}
+.idx{color:var(--acc);font-size:13px;letter-spacing:.1em;opacity:.85}
+h3{font-size:17px;margin:34px 0 12px;font-weight:600;color:var(--ink)}
+p{margin:0 0 16px;max-width:76ch}
+.note{background:var(--panel);border-left:3px solid var(--acc);border-radius:0 8px 8px 0;
+  padding:14px 18px;font-size:15px;max-width:none}
+.formula{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:18px 20px;font-size:16px;overflow-x:auto;margin:8px 0 16px;
+  color:var(--acc);line-height:1.9}
+.raw{margin:0 0 20px}
+.raw summary{cursor:pointer;color:var(--dim);font-size:14px;padding:6px 0}
+.raw summary:hover{color:var(--acc)}
+.raw[open] summary{margin-bottom:10px}
+.raw .formula{color:var(--dim);font-size:14px}
+
+/* tables */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14.5px}
+.tbl th{text-align:left;font-weight:600;font-size:12.5px;letter-spacing:.05em;
+  color:var(--dim);border-bottom:1px solid var(--line);padding:9px 12px;white-space:nowrap}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tbody tr:hover{background:var(--panel)}
+.tbl .num{text-align:right}
+.tbl th.num{text-align:right}
+.tbl.compact td,.tbl.compact th{padding:7px 10px;font-size:13.5px}
+.tbl .champrow{background:color-mix(in srgb,var(--acc) 9%,transparent)}
+.tbl .champrow:hover{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.tbl .offline{opacity:.7}
+.tbl .empty td{color:var(--faint)}
+.tbl tr.acc td:first-child{box-shadow:inset 2px 0 0 var(--acc)}
+.expr{font-size:13px;color:var(--dim);max-width:380px;word-break:break-word}
+
+.pill{display:inline-block;font-size:11px;letter-spacing:.04em;padding:1px 7px;
+  border-radius:99px;border:1px solid var(--line);color:var(--dim);
+  background:var(--panel2);vertical-align:middle;margin-left:4px}
+.pill.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+.pill.acc{color:var(--acc);border-color:color-mix(in srgb,var(--acc) 40%,transparent)}
+.tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:5px;letter-spacing:.03em}
+.tag.ok{color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.tag.no{color:var(--dim);background:var(--panel2)}
+
+/* charts */
+.chart{margin:14px 0 24px;padding:0}
+.chart svg{width:100%;height:auto;display:block;background:var(--panel);
+  border:1px solid var(--line);border-radius:10px}
+figcaption{font-size:13px;color:var(--dim);margin-top:9px;line-height:1.6;max-width:76ch}
+.grid{stroke:var(--line);stroke-width:1}
+.axis{stroke:var(--line);stroke-width:1.2}
+.series{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.rule{stroke-width:1.2;stroke-dasharray:3 4;opacity:.75}
+.rulelab{font-family:var(--mono);font-size:10.5px;opacity:.85}
+.tick{fill:var(--dim);font-size:11px;font-family:var(--mono)}
+.ticksub{fill:var(--faint);font-size:9.5px;font-family:var(--mono)}
+.axlab{fill:var(--faint);font-size:11.5px}
+.legend{fill:var(--dim);font-size:11.5px}
+.bin{fill:none;stroke:var(--line);stroke-width:1.6}
+.binfill{fill:color-mix(in srgb,var(--acc2) 40%,transparent)}
+.item{fill:color-mix(in srgb,var(--acc) 35%,transparent);stroke:var(--acc);stroke-width:1.4}
+.diaglab{fill:var(--ink);font-size:11.5px;font-family:var(--mono)}
+.diagnote{fill:var(--dim);font-size:11.5px}
+.diagtag{font-size:10.5px}
+.diagtag.ok{fill:var(--acc)} .diagtag.no{fill:var(--faint)}
+.arrow{stroke:var(--faint);stroke-width:1.4;fill:none}
+.arrowhead{fill:var(--faint)}
+.layer{fill:var(--panel2);stroke-width:1.4;opacity:.95}
+.lidx{font-family:var(--mono);font-size:15px;font-weight:600}
+.ltitle{fill:var(--ink);font-size:14px;font-weight:600}
+.ldesc{fill:var(--dim);font-size:12px}
+.lmeta{font-family:var(--mono);font-size:11.5px;opacity:.9}
+
+/* operator bars */
+.opbars{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.opbar{display:grid;grid-template-columns:130px 1fr 54px 92px;gap:12px;align-items:center;
+  padding:5px 0;font-size:13.5px}
+.opname{color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.minted{font-size:10px;color:var(--acc);margin-left:5px}
+.optrack{height:8px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.opfill{height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc));border-radius:4px}
+.opnum{font-size:12.5px;text-align:right}
+
+/* log */
+.logentry{background:var(--panel);border:1px solid var(--line);border-left-width:3px;
+  border-radius:0 10px 10px 0;padding:14px 18px;margin:0 0 12px}
+.logentry.acc{border-left-color:var(--acc)}
+.logentry.hold{border-left-color:var(--line)}
+.logentry header{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+.logentry .gen{color:var(--acc);font-size:13px;font-weight:600}
+.logentry .date{color:var(--faint);font-size:12px}
+.logentry .logtitle{color:var(--dim);font-size:13px}
+.logentry p{margin:0 0 8px;font-size:14.5px;line-height:1.72;max-width:78ch}
+.logentry p:last-child{margin-bottom:0}
+
+.miles{list-style:none;padding:0;margin:0 0 20px;counter-reset:m}
+.miles li{display:grid;grid-template-columns:82px 1fr;gap:4px 14px;padding:10px 0;
+  border-bottom:1px solid var(--line);font-size:14.5px}
+.miles li .gen{color:var(--acc);font-size:12.5px}
+.miles li strong{grid-column:2}
+.miles li span:last-child{grid-column:2;color:var(--dim);font-size:13.5px}
+
+.checks{padding-left:22px;margin:0 0 18px}
+.checks li{margin-bottom:10px;font-size:14.5px;line-height:1.7;max-width:76ch}
+
+/* footer */
+footer{margin-top:64px;padding-top:26px;border-top:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:20px}
+.fgrid div{display:flex;flex-direction:column}
+footer .note{margin-top:10px}
+.fk{font-size:12px;color:var(--faint)}
+.fv{font-size:14px;color:var(--dim)}
+
+@media (max-width:720px){
+  .wrap{padding:0 16px 64px}
+  h1{font-size:24px} .genno{font-size:26px}
+  .lede{font-size:17px}
+  h2{font-size:20px;gap:10px}
+  .opbar{grid-template-columns:100px 1fr 48px;row-gap:2px}
+  .opbar .opnum:last-child{grid-column:2/4;text-align:left}
+  .top{padding:34px 0 22px}
+  .miles li{grid-template-columns:1fr}
+  .miles li strong,.miles li span:last-child{grid-column:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="brand">
+    <div class="ring" aria-hidden="true"></div>
+    <div>
+      <h1>OUROBOROS</h1>
+      <p class="tag">一个每天重写自己的网站</p>
+    </div>
+  </div>
+  <div class="genbox">
+    <div class="genno mono">GEN 0</div>
+    <div class="gendate mono">2026-09-17</div>
+    <div class="genstate"><span class="tag no">昨夜维持原样</span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="lede">这一页不是我写完就定稿的。它每天凌晨自己重跑一遍搜索，如果找到更好的东西，就改写自己，提交到 Git，重新发布。你现在读到的数字、表格、图，还有下面那段实验日志，都是第 0 代的产物。</p>
+  <div class="stats">
+    <div class="stat"><div class="sk">留出集超额率</div><div class="sv mono ">4.493%</div><div class="ss">训练折 4.125%，越低越好</div></div>
+    <div class="stat"><div class="sk">留出集比 Best Fit 低</div><div class="sv mono ">0.000 pp</div><div class="ss">训练折低 0.000 pp</div></div>
+    <div class="stat"><div class="sk">累计评估候选</div><div class="sv mono ">0</div><div class="ss">接受 0 次</div></div>
+    <div class="stat"><div class="sk">表达式规模</div><div class="sv mono ">2 节点</div><div class="ss">深度 2</div></div>
+  </div>
+</section>
+
+<nav class="toc"><span>目录</span>
+  <a href="#what">是什么</a><a href="#problem">目标问题</a><a href="#champion">当前冠军</a>
+  <a href="#score">成绩单</a><a href="#eco">进化曲线</a>
+  <a href="#lineage">世代谱系</a><a href="#log">实验日志</a>
+  <a href="#guard">护栏</a><a href="#repro">复现</a>
+</nav>
+
+<section id="what">
+  <h2><span class="idx mono">01</span>它到底在做什么</h2>
+  <p>「递归自我改进」这个词常常被用得很虚。要让它变成可以检验的东西，需要三样：一个<strong>能被客观打分的任务</strong>，一个<strong>不由被评者掌握的验收环节</strong>，以及一份<strong>没人能偷偷改的历史记录</strong>。这个项目把这三样都摆在明面上。</p>
+  <p>任务是<strong>在线装箱</strong>。系统要进化的，是一个决定"这件物品该放进哪个箱子"的评分函数。评分函数越好，用掉的箱子越少，超出理论下界的比例越低。这个比例是一个数，没有解释余地。</p>
+  <figure class="chart">
+<svg viewBox="0 0 940 336" role="img" aria-label="四层递归结构">
+  <defs><marker id="ah2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" class="arrowhead"/></marker></defs>
+  <g>
+      <rect class="layer" x="16" y="18" width="908" height="66" rx="6" style="stroke:var(--acc)"/>
+      <text class="lidx" style="fill:var(--acc)" x="36" y="58">L0</text>
+      <text class="ltitle" x="92" y="46">目标层 · 启发式</text>
+      <text class="ldesc" x="92" y="68">score(i, r, g, k) 决定每件物品进哪个箱子</text>
+      <text class="lmeta" style="fill:var(--acc)" x="908" y="58" text-anchor="end">当前 2 个节点</text>
+      <path class="arrow" d="M470 84 L470 100" marker-end="url(#ah2)"/>
+    </g><g>
+      <rect class="layer" x="16" y="96" width="908" height="66" rx="6" style="stroke:var(--acc2)"/>
+      <text class="lidx" style="fill:var(--acc2)" x="36" y="136">L1</text>
+      <text class="ltitle" x="92" y="124">搜索层 · 变异算子</text>
+      <text class="ldesc" x="92" y="146">八个算子改写 L0 的表达式树，MAP-Elites 维持多样性</text>
+      <text class="lmeta" style="fill:var(--acc2)" x="908" y="136" text-anchor="end">8 个算子在册</text>
+      <path class="arrow" d="M470 162 L470 178" marker-end="url(#ah2)"/>
+    </g><g>
+      <rect class="layer" x="16" y="174" width="908" height="66" rx="6" style="stroke:var(--acc3)"/>
+      <text class="lidx" style="fill:var(--acc3)" x="36" y="214">L2</text>
+      <text class="ltitle" x="92" y="202">元层 · 信用分配</text>
+      <text class="ldesc" x="92" y="224">按实测命中率重新分配算子权重、退火步长与算力预算</text>
+      <text class="lmeta" style="fill:var(--acc3)" x="908" y="214" text-anchor="end">σ=0.3，预算 12,000</text>
+      <path class="arrow" d="M470 240 L470 256" marker-end="url(#ah2)"/>
+    </g><g>
+      <rect class="layer" x="16" y="252" width="908" height="66" rx="6" style="stroke:var(--acc4)"/>
+      <text class="lidx" style="fill:var(--acc4)" x="36" y="292">L3</text>
+      <text class="ltitle" x="92" y="280">叙述层 · 本页</text>
+      <text class="ldesc" x="92" y="302">基因组确定性地编译成这张网页，包括你正在读的这段</text>
+      <text class="lmeta" style="fill:var(--acc4)" x="908" y="292" text-anchor="end">第 0 代</text>
+      
+    </g>
+</svg>
+<figcaption>每一层都在改上一层。L3 改的是你眼前这页的内容，所以这张图本身也是 L3 的产物。</figcaption></figure>
+  <p>四层里，每一层改的都是上一层。L3 改的是这张网页 —— 也就是说，你现在读的这段话所在的文件，是被下面那台机器生成出来的。这不是修辞。</p>
+</section>
+
+<section id="problem">
+  <h2><span class="idx mono">02</span>目标问题：在线装箱</h2>
+  <p>给定一串物品和容量固定的箱子，把所有物品装进尽量少的箱子。<strong>在线</strong>的意思是：物品一件一件到达，每件必须在看到下一件之前放好，而且放了不能再动。这让它比离线版本难得多 —— 离线算法可以先把所有物品排序再装，在线算法连下一件是大是小都不知道。</p>
+  <figure class="chart">
+<svg viewBox="0 0 940 268" role="img" aria-label="在线装箱的每步决策">
+  <rect class="item" x="62" y="116" width="110" height="36" rx="4"/>
+  <text class="diaglab" x="117" y="139" text-anchor="middle">新物品 i=0.24</text>
+  <text class="diagnote" x="117" y="184" text-anchor="middle">必须立刻放好</text>
+  <text class="diagnote" x="117" y="202" text-anchor="middle">不能等，不能反悔</text>
+  <path class="arrow" d="M182 134 L236 134" marker-end="url(#ah)"/>
+  <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" class="arrowhead"/></marker></defs>
+  <g>
+      <rect class="bin" x="250" y="56" width="78" height="150" rx="4"/>
+      <rect class="binfill" x="253" y="83.00000000000001" width="72" height="119.99999999999999" rx="3"/>
+      <text class="diaglab" x="289" y="224" text-anchor="middle">r=0.18</text>
+      <text class="diagtag no" x="289" y="240" text-anchor="middle">装不下</text>
+    </g><g>
+      <rect class="bin" x="358" y="56" width="78" height="150" rx="4"/>
+      <rect class="binfill" x="361" y="123.5" width="72" height="79.5" rx="3"/>
+      <text class="diaglab" x="397" y="224" text-anchor="middle">r=0.45</text>
+      <text class="diagtag ok" x="397" y="240" text-anchor="middle">装得下</text>
+    </g><g>
+      <rect class="bin" x="466" y="56" width="78" height="150" rx="4"/>
+      <rect class="binfill" x="469" y="69.5" width="72" height="133.5" rx="3"/>
+      <text class="diaglab" x="505" y="224" text-anchor="middle">r=0.09</text>
+      <text class="diagtag no" x="505" y="240" text-anchor="middle">装不下</text>
+    </g><g>
+      <rect class="bin" x="574" y="56" width="78" height="150" rx="4"/>
+      <rect class="binfill" x="577" y="161" width="72" height="42" rx="3"/>
+      <text class="diaglab" x="613" y="224" text-anchor="middle">r=0.70</text>
+      <text class="diagtag ok" x="613" y="240" text-anchor="middle">装得下</text>
+    </g>
+  <text class="diagnote" x="470" y="26" text-anchor="middle">在所有装得下的箱子里，评分函数 score(i, r, g, k) 最高的那个获胜；全都装不下就开新箱</text>
+</svg>
+<figcaption>在线装箱：物品逐个到达，必须立即决定去向，没有回溯。进化出来的东西就是上面那个 score。</figcaption></figure>
+  <p>评价指标是<strong>超额率</strong>：实际用掉的箱子数，比"所有物品体积之和 ÷ 箱容"这个下界多出的百分比。下界通常达不到，所以这个数永远为正，越接近 0 越好。</p>
+  <h3>基准实例集：三折划分</h3>
+  <p>四种物品尺寸分布，每个实例 500 件物品，全部由固定随机种子确定性生成，没有外部数据文件。8,000 件物品被切成三份，<strong>哪个实例落在哪一折，是这个项目里最重要的一个设计决定</strong>：</p>
+  
+<table class="tbl">
+  <thead><tr><th>折</th><th class="num">实例数</th><th>它有什么权力</th><th class="num">冠军得分</th><th class="num">Best Fit</th></tr></thead>
+  <tbody>
+    <tr><td><strong>训练折</strong> <span class="mono dim">train</span></td><td class="num mono">8</td>
+      <td class="small">驱动搜索。每晚上万个候选都在这里打分，冠军必须在这里严格更优（余量 0.004 pp）才有资格往下走。</td>
+      <td class="num mono strong">4.125%</td><td class="num mono dim">4.125%</td></tr>
+    <tr><td><strong>验证折</strong> <span class="mono dim">val</span></td><td class="num mono">4</td>
+      <td class="small">只有否决权，没有提名权。在训练折上赢了的候选，在这里<strong>一个箱子都不许多用</strong>，否则当场出局。</td>
+      <td class="num mono strong">4.240%</td><td class="num mono dim">4.240%</td></tr>
+    <tr><td><strong>留出集</strong> <span class="mono dim">test</span></td><td class="num mono">12</td>
+      <td class="small">什么权力都没有。不参与选择，不参与否决，只是被记录。故意做成三折里最大的一折。</td>
+      <td class="num mono strong">4.493%</td><td class="num mono dim">4.493%</td></tr>
+  </tbody>
+</table>
+  <p class="note"><strong>为什么非要分三折。</strong>只有训练折的话，搜索会稳定地学会训练实例的指纹 —— 它会发现"第 3 个实例的第 417 件物品之后总是来一件小的"这种东西，然后在别处一败涂地。验证折是一道否决权：一个候选在训练折上省下的箱子，如果在验证折上又赔了回去，它当场出局，连成为冠军的资格都没有。留出集则从头到尾不参与任何决定 —— 它存在的唯一理由，是让这一页能报出一个<strong>系统无权优化的数字</strong>。</p>
+  <p>整套实例集的指纹是 <code class="mono">af6d6118</code>。引擎每次启动都会重算这个指纹，一旦对不上就拒绝继续进化 —— 换了考题的成绩单没有意义。</p>
+  
+<table class="tbl">
+  <thead><tr><th>分布</th><th>生成方式</th><th class="num">箱容</th><th class="num">冠军（训练折）</th><th class="num">Best Fit</th><th class="num">差值</th></tr></thead>
+  <tbody><tr>
+      <td><strong>韦布尔分布</strong> <span class="mono dim">Weibull</span></td>
+      <td class="small">shape 3.0 / scale 45，OR-Library 风格的经典测试集</td>
+      <td class="num mono">100</td>
+      <td class="num mono">4.726%</td>
+      <td class="num mono dim">4.726%</td>
+      <td class="num mono dim">+0.000</td>
+    </tr><tr>
+      <td><strong>均匀分布</strong> <span class="mono dim">Uniform</span></td>
+      <td class="small">尺寸均匀取自 [20,100]，容量 150</td>
+      <td class="num mono">150</td>
+      <td class="num mono">4.903%</td>
+      <td class="num mono dim">4.903%</td>
+      <td class="num mono dim">+0.000</td>
+    </tr><tr>
+      <td><strong>三元组</strong> <span class="mono dim">Triplet</span></td>
+      <td class="small">尺寸贴近 C/3，最优解需要恰好三件一箱</td>
+      <td class="num mono">1000</td>
+      <td class="num mono">6.098%</td>
+      <td class="num mono dim">6.098%</td>
+      <td class="num mono dim">+0.000</td>
+    </tr><tr>
+      <td><strong>双峰分布</strong> <span class="mono dim">Bimodal</span></td>
+      <td class="small">70% 小件填充 + 30% 大件阻塞，考验&quot;留白&quot;策略</td>
+      <td class="num mono">100</td>
+      <td class="num mono">0.771%</td>
+      <td class="num mono dim">0.771%</td>
+      <td class="num mono dim">+0.000</td>
+    </tr></tbody>
+</table>
+</section>
+
+<section id="champion">
+  <h2><span class="idx mono">03</span>当前冠军</h2>
+  <p>装箱器在所有装得下的箱子里，选评分最高的那个。这个评分函数是第 0 代由「初始播种」产出的：</p>
+  <div class="formula mono">score = −g</div>
+  <details class="raw"><summary>原始表达式树（未化简）与 JSON 基因型</summary>
+    <div class="formula mono small">−g</div>
+    <pre class="mono"><code>[&quot;neg&quot;,[&quot;v&quot;,&quot;g&quot;]]</code></pre>
+    <p class="small dim">这就是全部的基因型。整个个体 2 个节点、深度 2，可以完整塞进一行 git diff。这是刻意的：一个看不懂的进化产物没法讨论。</p>
+  </details>
+  <h3>它能感知的四个量</h3>
+  
+<table class="tbl">
+  <thead><tr><th class="num">符号</th><th>名称</th><th>含义</th><th>冠军是否用到</th></tr></thead>
+  <tbody><tr>
+    <td class="num mono strong">i</td><td>件尺寸 <span class="dim mono small">item size</span></td>
+    <td class="small">当前物品尺寸，已按箱容归一到 (0,1]</td>
+    <td><span class="tag no">未用</span></td>
+  </tr><tr>
+    <td class="num mono strong">r</td><td>剩余容量 <span class="dim mono small">remaining</span></td>
+    <td class="small">候选箱的剩余容量，归一到 [0,1]</td>
+    <td><span class="tag no">未用</span></td>
+  </tr><tr>
+    <td class="num mono strong">g</td><td>放入后缝隙 <span class="dim mono small">gap</span></td>
+    <td class="small">r − i，放进去之后剩下的空隙</td>
+    <td><span class="tag ok">用到</span></td>
+  </tr><tr>
+    <td class="num mono strong">k</td><td>箱龄 <span class="dim mono small">bin age</span></td>
+    <td class="small">候选箱在已开箱序列中的归一位置，0 最老</td>
+    <td><span class="tag no">未用</span></td>
+  </tr></tbody>
+</table>
+  <h3>它到底学到了什么策略</h3>
+  <p>光看"它最想要多大的缝隙"是看不出名堂的 —— 任何像样的规则都会把恰好装满排在第一。真正的差别藏在<strong>第一名之后的排序</strong>里。</p>
+  <figure class="chart">
+<svg viewBox="0 0 940 340" role="img" aria-label="缝隙偏好排序热力图">
+  <text class="ltitle" x="58" y="22">当前冠军</text>
+      <path fill="rgb(68,1,84)" d="M58 44h11v10h-11zM58 34h11v10h-11zM69 44h11v10h-11zM69 34h11v10h-11zM80 44h11v10h-11zM80 34h11v10h-11zM91 44h11v10h-11zM91 34h11v10h-11zM102 44h11v10h-11zM102 34h11v10h-11zM113 44h11v10h-11zM113 34h11v10h-11zM124 44h11v10h-11zM124 34h11v10h-11zM135 44h11v10h-11zM135 34h11v10h-11zM146 44h11v10h-11zM146 34h11v10h-11zM157 44h11v10h-11zM157 34h11v10h-11zM168 44h11v10h-11zM168 34h11v10h-11zM179 44h11v10h-11zM179 34h11v10h-11zM190 44h11v10h-11zM190 34h11v10h-11zM201 44h11v10h-11zM201 34h11v10h-11zM212 54h11v10h-11zM212 44h11v10h-11zM223 64h11v10h-11zM223 54h11v10h-11zM234 74h11v10h-11zM234 64h11v10h-11zM245 84h11v10h-11zM245 74h11v10h-11zM256 84h11v10h-11zM256 74h11v10h-11zM267 94h11v10h-11zM267 84h11v10h-11zM278 104h11v10h-11zM278 94h11v10h-11zM289 114h11v10h-11zM289 104h11v10h-11zM300 124h11v10h-11zM300 114h11v10h-11zM311 124h11v10h-11zM322 134h11v10h-11zM333 144h11v10h-11zM344 154h11v10h-11zM355 164h11v10h-11zM366 174h11v10h-11zM377 184h11v10h-11zM388 194h11v10h-11zM399 204h11v10h-11zM410 214h11v10h-11zM421 224h11v10h-11zM432 234h11v10h-11z"/><path fill="rgb(65,30,104)" d="M58 64h11v10h-11zM58 54h11v10h-11zM69 64h11v10h-11zM69 54h11v10h-11zM80 64h11v10h-11zM80 54h11v10h-11zM91 64h11v10h-11zM91 54h11v10h-11zM102 64h11v10h-11zM102 54h11v10h-11zM113 64h11v10h-11zM113 54h11v10h-11zM124 64h11v10h-11zM124 54h11v10h-11zM135 64h11v10h-11zM135 54h11v10h-11zM146 64h11v10h-11zM146 54h11v10h-11zM157 64h11v10h-11zM157 54h11v10h-11zM168 64h11v10h-11zM168 54h11v10h-11zM179 64h11v10h-11zM179 54h11v10h-11zM190 64h11v10h-11zM190 54h11v10h-11zM201 64h11v10h-11zM201 54h11v10h-11zM212 74h11v10h-11zM212 64h11v10h-11zM223 84h11v10h-11zM223 74h11v10h-11zM234 84h11v10h-11zM245 94h11v10h-11zM256 94h11v10h-11zM267 104h11v10h-11zM278 114h11v10h-11zM289 124h11v10h-11zM300 134h11v10h-11zM311 134h11v10h-11zM322 144h11v10h-11zM333 154h11v10h-11zM344 164h11v10h-11zM355 174h11v10h-11zM366 184h11v10h-11z"/><path fill="rgb(61,60,124)" d="M58 84h11v10h-11zM58 74h11v10h-11zM69 84h11v10h-11zM69 74h11v10h-11zM80 84h11v10h-11zM80 74h11v10h-11zM91 84h11v10h-11zM91 74h11v10h-11zM102 84h11v10h-11zM102 74h11v10h-11zM113 84h11v10h-11zM113 74h11v10h-11zM124 84h11v10h-11zM124 74h11v10h-11zM135 84h11v10h-11zM135 74h11v10h-11zM146 84h11v10h-11zM146 74h11v10h-11zM157 84h11v10h-11zM157 74h11v10h-11zM168 84h11v10h-11zM168 74h11v10h-11zM179 84h11v10h-11zM179 74h11v10h-11zM190 84h11v10h-11zM190 74h11v10h-11zM201 84h11v10h-11zM201 74h11v10h-11zM212 84h11v10h-11zM223 94h11v10h-11zM234 104h11v10h-11zM234 94h11v10h-11zM245 114h11v10h-11zM245 104h11v10h-11zM256 114h11v10h-11zM256 104h11v10h-11zM267 114h11v10h-11zM278 124h11v10h-11zM289 134h11v10h-11zM300 144h11v10h-11zM311 144h11v10h-11zM322 154h11v10h-11zM333 164h11v10h-11zM344 174h11v10h-11zM377 194h11v10h-11zM388 204h11v10h-11z"/><path fill="rgb(57,88,139)" d="M58 94h11v10h-11zM69 94h11v10h-11zM80 94h11v10h-11zM91 94h11v10h-11zM102 94h11v10h-11zM113 94h11v10h-11zM124 94h11v10h-11zM135 94h11v10h-11zM146 94h11v10h-11zM157 94h11v10h-11zM168 94h11v10h-11zM179 94h11v10h-11zM190 94h11v10h-11zM201 94h11v10h-11zM212 104h11v10h-11zM212 94h11v10h-11zM223 114h11v10h-11zM223 104h11v10h-11zM234 114h11v10h-11zM245 124h11v10h-11zM256 124h11v10h-11zM267 134h11v10h-11zM267 124h11v10h-11zM278 134h11v10h-11zM289 144h11v10h-11zM300 154h11v10h-11zM311 154h11v10h-11zM322 164h11v10h-11zM333 174h11v10h-11zM355 184h11v10h-11zM366 194h11v10h-11zM399 214h11v10h-11z"/><path fill="rgb(47,111,139)" d="M58 114h11v10h-11zM58 104h11v10h-11zM69 114h11v10h-11zM69 104h11v10h-11zM80 114h11v10h-11zM80 104h11v10h-11zM91 114h11v10h-11zM91 104h11v10h-11zM102 114h11v10h-11zM102 104h11v10h-11zM113 114h11v10h-11zM113 104h11v10h-11zM124 114h11v10h-11zM124 104h11v10h-11zM135 114h11v10h-11zM135 104h11v10h-11zM146 114h11v10h-11zM146 104h11v10h-11zM157 114h11v10h-11zM157 104h11v10h-11zM168 114h11v10h-11zM168 104h11v10h-11zM179 114h11v10h-11zM179 104h11v10h-11zM190 114h11v10h-11zM190 104h11v10h-11zM201 114h11v10h-11zM201 104h11v10h-11zM212 124h11v10h-11zM212 114h11v10h-11zM223 124h11v10h-11zM234 134h11v10h-11zM234 124h11v10h-11zM245 144h11v10h-11zM245 134h11v10h-11zM256 144h11v10h-11zM256 134h11v10h-11zM267 144h11v10h-11zM278 154h11v10h-11zM278 144h11v10h-11zM289 154h11v10h-11zM300 164h11v10h-11zM311 164h11v10h-11zM322 174h11v10h-11zM333 184h11v10h-11zM344 184h11v10h-11zM355 194h11v10h-11zM377 204h11v10h-11zM388 214h11v10h-11zM410 224h11v10h-11z"/><path fill="rgb(38,134,140)" d="M58 134h11v10h-11zM58 124h11v10h-11zM69 134h11v10h-11zM69 124h11v10h-11zM80 134h11v10h-11zM80 124h11v10h-11zM91 134h11v10h-11zM91 124h11v10h-11zM102 134h11v10h-11zM102 124h11v10h-11zM113 134h11v10h-11zM113 124h11v10h-11zM124 134h11v10h-11zM124 124h11v10h-11zM135 134h11v10h-11zM135 124h11v10h-11zM146 134h11v10h-11zM146 124h11v10h-11zM157 134h11v10h-11zM157 124h11v10h-11zM168 134h11v10h-11zM168 124h11v10h-11zM179 134h11v10h-11zM179 124h11v10h-11zM190 134h11v10h-11zM190 124h11v10h-11zM201 134h11v10h-11zM201 124h11v10h-11zM212 134h11v10h-11zM223 144h11v10h-11zM223 134h11v10h-11zM234 144h11v10h-11zM245 154h11v10h-11zM256 154h11v10h-11zM267 154h11v10h-11zM278 164h11v10h-11zM289 164h11v10h-11zM300 174h11v10h-11zM311 174h11v10h-11zM322 184h11v10h-11zM344 194h11v10h-11zM366 204h11v10h-11z"/><path fill="rgb(44,155,132)" d="M58 154h11v10h-11zM58 144h11v10h-11zM69 154h11v10h-11zM69 144h11v10h-11zM80 154h11v10h-11zM80 144h11v10h-11zM91 154h11v10h-11zM91 144h11v10h-11zM102 154h11v10h-11zM102 144h11v10h-11zM113 154h11v10h-11zM113 144h11v10h-11zM124 154h11v10h-11zM124 144h11v10h-11zM135 154h11v10h-11zM135 144h11v10h-11zM146 154h11v10h-11zM146 144h11v10h-11zM157 154h11v10h-11zM157 144h11v10h-11zM168 154h11v10h-11zM168 144h11v10h-11zM179 154h11v10h-11zM179 144h11v10h-11zM190 154h11v10h-11zM190 144h11v10h-11zM201 154h11v10h-11zM201 144h11v10h-11zM212 154h11v10h-11zM212 144h11v10h-11zM223 164h11v10h-11zM223 154h11v10h-11zM234 164h11v10h-11zM234 154h11v10h-11zM245 164h11v10h-11zM256 164h11v10h-11zM267 174h11v10h-11zM267 164h11v10h-11zM278 174h11v10h-11zM289 184h11v10h-11zM289 174h11v10h-11zM300 184h11v10h-11zM311 184h11v10h-11zM322 194h11v10h-11zM333 194h11v10h-11zM344 204h11v10h-11zM355 204h11v10h-11zM366 214h11v10h-11zM377 214h11v10h-11zM399 224h11v10h-11zM421 234h11v10h-11z"/><path fill="rgb(66,176,117)" d="M58 164h11v10h-11zM69 164h11v10h-11zM80 164h11v10h-11zM91 164h11v10h-11zM102 164h11v10h-11zM113 164h11v10h-11zM124 164h11v10h-11zM135 164h11v10h-11zM146 164h11v10h-11zM157 164h11v10h-11zM168 164h11v10h-11zM179 164h11v10h-11zM190 164h11v10h-11zM201 164h11v10h-11zM212 174h11v10h-11zM212 164h11v10h-11zM223 174h11v10h-11zM234 174h11v10h-11zM245 184h11v10h-11zM245 174h11v10h-11zM256 184h11v10h-11zM256 174h11v10h-11zM267 184h11v10h-11zM278 184h11v10h-11zM289 194h11v10h-11zM300 194h11v10h-11zM311 194h11v10h-11zM322 204h11v10h-11zM333 204h11v10h-11zM355 214h11v10h-11zM388 224h11v10h-11z"/><path fill="rgb(88,196,102)" d="M58 184h11v10h-11zM58 174h11v10h-11zM69 184h11v10h-11zM69 174h11v10h-11zM80 184h11v10h-11zM80 174h11v10h-11zM91 184h11v10h-11zM91 174h11v10h-11zM102 184h11v10h-11zM102 174h11v10h-11zM113 184h11v10h-11zM113 174h11v10h-11zM124 184h11v10h-11zM124 174h11v10h-11zM135 184h11v10h-11zM135 174h11v10h-11zM146 184h11v10h-11zM146 174h11v10h-11zM157 184h11v10h-11zM157 174h11v10h-11zM168 184h11v10h-11zM168 174h11v10h-11zM179 184h11v10h-11zM179 174h11v10h-11zM190 184h11v10h-11zM190 174h11v10h-11zM201 184h11v10h-11zM201 174h11v10h-11zM212 184h11v10h-11zM223 194h11v10h-11zM223 184h11v10h-11zM234 194h11v10h-11zM234 184h11v10h-11zM245 194h11v10h-11zM256 194h11v10h-11zM267 194h11v10h-11zM278 204h11v10h-11zM278 194h11v10h-11zM289 204h11v10h-11zM300 204h11v10h-11zM311 204h11v10h-11zM322 214h11v10h-11zM333 214h11v10h-11zM344 214h11v10h-11zM366 224h11v10h-11zM377 224h11v10h-11zM410 234h11v10h-11z"/><path fill="rgb(137,209,81)" d="M58 204h11v10h-11zM58 194h11v10h-11zM69 204h11v10h-11zM69 194h11v10h-11zM80 204h11v10h-11zM80 194h11v10h-11zM91 204h11v10h-11zM91 194h11v10h-11zM102 204h11v10h-11zM102 194h11v10h-11zM113 204h11v10h-11zM113 194h11v10h-11zM124 204h11v10h-11zM124 194h11v10h-11zM135 204h11v10h-11zM135 194h11v10h-11zM146 204h11v10h-11zM146 194h11v10h-11zM157 204h11v10h-11zM157 194h11v10h-11zM168 204h11v10h-11zM168 194h11v10h-11zM179 204h11v10h-11zM179 194h11v10h-11zM190 204h11v10h-11zM190 194h11v10h-11zM201 204h11v10h-11zM201 194h11v10h-11zM212 204h11v10h-11zM212 194h11v10h-11zM223 204h11v10h-11zM234 204h11v10h-11zM245 214h11v10h-11zM245 204h11v10h-11zM256 214h11v10h-11zM256 204h11v10h-11zM267 214h11v10h-11zM267 204h11v10h-11zM278 214h11v10h-11zM289 214h11v10h-11zM300 214h11v10h-11zM311 214h11v10h-11zM322 224h11v10h-11zM333 224h11v10h-11zM344 224h11v10h-11zM355 224h11v10h-11zM388 234h11v10h-11zM399 234h11v10h-11z"/><path fill="rgb(195,220,59)" d="M58 224h11v10h-11zM58 214h11v10h-11zM69 224h11v10h-11zM69 214h11v10h-11zM80 224h11v10h-11zM80 214h11v10h-11zM91 224h11v10h-11zM91 214h11v10h-11zM102 224h11v10h-11zM102 214h11v10h-11zM113 224h11v10h-11zM113 214h11v10h-11zM124 224h11v10h-11zM124 214h11v10h-11zM135 224h11v10h-11zM135 214h11v10h-11zM146 224h11v10h-11zM146 214h11v10h-11zM157 224h11v10h-11zM157 214h11v10h-11zM168 224h11v10h-11zM168 214h11v10h-11zM179 224h11v10h-11zM179 214h11v10h-11zM190 224h11v10h-11zM190 214h11v10h-11zM201 224h11v10h-11zM201 214h11v10h-11zM212 224h11v10h-11zM212 214h11v10h-11zM223 224h11v10h-11zM223 214h11v10h-11zM234 224h11v10h-11zM234 214h11v10h-11zM245 224h11v10h-11zM256 224h11v10h-11zM267 224h11v10h-11zM278 224h11v10h-11zM289 224h11v10h-11zM300 224h11v10h-11zM311 224h11v10h-11zM322 234h11v10h-11zM333 234h11v10h-11zM344 234h11v10h-11zM355 234h11v10h-11zM366 234h11v10h-11zM377 234h11v10h-11z"/><path fill="rgb(253,231,37)" d="M58 244h11v10h-11zM58 234h11v10h-11zM69 244h11v10h-11zM69 234h11v10h-11zM80 244h11v10h-11zM80 234h11v10h-11zM91 244h11v10h-11zM91 234h11v10h-11zM102 244h11v10h-11zM102 234h11v10h-11zM113 244h11v10h-11zM113 234h11v10h-11zM124 244h11v10h-11zM124 234h11v10h-11zM135 244h11v10h-11zM135 234h11v10h-11zM146 244h11v10h-11zM146 234h11v10h-11zM157 244h11v10h-11zM157 234h11v10h-11zM168 244h11v10h-11zM168 234h11v10h-11zM179 244h11v10h-11zM179 234h11v10h-11zM190 244h11v10h-11zM190 234h11v10h-11zM201 244h11v10h-11zM201 234h11v10h-11zM212 244h11v10h-11zM212 234h11v10h-11zM223 244h11v10h-11zM223 234h11v10h-11zM234 244h11v10h-11zM234 234h11v10h-11zM245 244h11v10h-11zM245 234h11v10h-11zM256 244h11v10h-11zM256 234h11v10h-11zM267 244h11v10h-11zM267 234h11v10h-11zM278 244h11v10h-11zM278 234h11v10h-11zM289 244h11v10h-11zM289 234h11v10h-11zM300 244h11v10h-11zM300 234h11v10h-11zM311 244h11v10h-11zM311 234h11v10h-11zM322 244h11v10h-11zM333 244h11v10h-11zM344 244h11v10h-11zM355 244h11v10h-11zM366 244h11v10h-11zM377 244h11v10h-11zM388 244h11v10h-11zM399 244h11v10h-11zM410 244h11v10h-11zM421 244h11v10h-11zM432 244h11v10h-11zM443 244h11v10h-11z"/><rect x="58" y="34" width="396" height="220" fill="none" class="axis"/>
+      <text class="tick" x="50" y="258" text-anchor="end">0.0</text><text class="tick" x="50" y="185" text-anchor="end">0.2</text><text class="tick" x="50" y="111" text-anchor="end">0.4</text><text class="tick" x="50" y="38" text-anchor="end">0.6</text><text class="tick" x="137" y="271" text-anchor="middle">0.2</text><text class="tick" x="256" y="271" text-anchor="middle">0.5</text><text class="tick" x="375" y="271" text-anchor="middle">0.8</text>
+      <text class="axlab" x="256" y="288" text-anchor="middle">物品尺寸 i</text><text class="ltitle" x="516" y="22">Best Fit（单调，无结构）</text>
+      <path fill="rgb(68,1,84)" d="M516 44h11v10h-11zM516 34h11v10h-11zM527 44h11v10h-11zM527 34h11v10h-11zM538 44h11v10h-11zM538 34h11v10h-11zM549 44h11v10h-11zM549 34h11v10h-11zM560 44h11v10h-11zM560 34h11v10h-11zM571 44h11v10h-11zM571 34h11v10h-11zM582 44h11v10h-11zM582 34h11v10h-11zM593 44h11v10h-11zM593 34h11v10h-11zM604 44h11v10h-11zM604 34h11v10h-11zM615 44h11v10h-11zM615 34h11v10h-11zM626 44h11v10h-11zM626 34h11v10h-11zM637 44h11v10h-11zM637 34h11v10h-11zM648 44h11v10h-11zM648 34h11v10h-11zM659 44h11v10h-11zM659 34h11v10h-11zM670 54h11v10h-11zM670 44h11v10h-11zM681 64h11v10h-11zM681 54h11v10h-11zM692 74h11v10h-11zM692 64h11v10h-11zM703 84h11v10h-11zM703 74h11v10h-11zM714 84h11v10h-11zM714 74h11v10h-11zM725 94h11v10h-11zM725 84h11v10h-11zM736 104h11v10h-11zM736 94h11v10h-11zM747 114h11v10h-11zM747 104h11v10h-11zM758 124h11v10h-11zM758 114h11v10h-11zM769 124h11v10h-11zM780 134h11v10h-11zM791 144h11v10h-11zM802 154h11v10h-11zM813 164h11v10h-11zM824 174h11v10h-11zM835 184h11v10h-11zM846 194h11v10h-11zM857 204h11v10h-11zM868 214h11v10h-11zM879 224h11v10h-11zM890 234h11v10h-11z"/><path fill="rgb(65,30,104)" d="M516 64h11v10h-11zM516 54h11v10h-11zM527 64h11v10h-11zM527 54h11v10h-11zM538 64h11v10h-11zM538 54h11v10h-11zM549 64h11v10h-11zM549 54h11v10h-11zM560 64h11v10h-11zM560 54h11v10h-11zM571 64h11v10h-11zM571 54h11v10h-11zM582 64h11v10h-11zM582 54h11v10h-11zM593 64h11v10h-11zM593 54h11v10h-11zM604 64h11v10h-11zM604 54h11v10h-11zM615 64h11v10h-11zM615 54h11v10h-11zM626 64h11v10h-11zM626 54h11v10h-11zM637 64h11v10h-11zM637 54h11v10h-11zM648 64h11v10h-11zM648 54h11v10h-11zM659 64h11v10h-11zM659 54h11v10h-11zM670 74h11v10h-11zM670 64h11v10h-11zM681 84h11v10h-11zM681 74h11v10h-11zM692 84h11v10h-11zM703 94h11v10h-11zM714 94h11v10h-11zM725 104h11v10h-11zM736 114h11v10h-11zM747 124h11v10h-11zM758 134h11v10h-11zM769 134h11v10h-11zM780 144h11v10h-11zM791 154h11v10h-11zM802 164h11v10h-11zM813 174h11v10h-11zM824 184h11v10h-11z"/><path fill="rgb(61,60,124)" d="M516 84h11v10h-11zM516 74h11v10h-11zM527 84h11v10h-11zM527 74h11v10h-11zM538 84h11v10h-11zM538 74h11v10h-11zM549 84h11v10h-11zM549 74h11v10h-11zM560 84h11v10h-11zM560 74h11v10h-11zM571 84h11v10h-11zM571 74h11v10h-11zM582 84h11v10h-11zM582 74h11v10h-11zM593 84h11v10h-11zM593 74h11v10h-11zM604 84h11v10h-11zM604 74h11v10h-11zM615 84h11v10h-11zM615 74h11v10h-11zM626 84h11v10h-11zM626 74h11v10h-11zM637 84h11v10h-11zM637 74h11v10h-11zM648 84h11v10h-11zM648 74h11v10h-11zM659 84h11v10h-11zM659 74h11v10h-11zM670 84h11v10h-11zM681 94h11v10h-11zM692 104h11v10h-11zM692 94h11v10h-11zM703 114h11v10h-11zM703 104h11v10h-11zM714 114h11v10h-11zM714 104h11v10h-11zM725 114h11v10h-11zM736 124h11v10h-11zM747 134h11v10h-11zM758 144h11v10h-11zM769 144h11v10h-11zM780 154h11v10h-11zM791 164h11v10h-11zM802 174h11v10h-11zM835 194h11v10h-11zM846 204h11v10h-11z"/><path fill="rgb(57,88,139)" d="M516 94h11v10h-11zM527 94h11v10h-11zM538 94h11v10h-11zM549 94h11v10h-11zM560 94h11v10h-11zM571 94h11v10h-11zM582 94h11v10h-11zM593 94h11v10h-11zM604 94h11v10h-11zM615 94h11v10h-11zM626 94h11v10h-11zM637 94h11v10h-11zM648 94h11v10h-11zM659 94h11v10h-11zM670 104h11v10h-11zM670 94h11v10h-11zM681 114h11v10h-11zM681 104h11v10h-11zM692 114h11v10h-11zM703 124h11v10h-11zM714 124h11v10h-11zM725 134h11v10h-11zM725 124h11v10h-11zM736 134h11v10h-11zM747 144h11v10h-11zM758 154h11v10h-11zM769 154h11v10h-11zM780 164h11v10h-11zM791 174h11v10h-11zM813 184h11v10h-11zM824 194h11v10h-11zM857 214h11v10h-11z"/><path fill="rgb(47,111,139)" d="M516 114h11v10h-11zM516 104h11v10h-11zM527 114h11v10h-11zM527 104h11v10h-11zM538 114h11v10h-11zM538 104h11v10h-11zM549 114h11v10h-11zM549 104h11v10h-11zM560 114h11v10h-11zM560 104h11v10h-11zM571 114h11v10h-11zM571 104h11v10h-11zM582 114h11v10h-11zM582 104h11v10h-11zM593 114h11v10h-11zM593 104h11v10h-11zM604 114h11v10h-11zM604 104h11v10h-11zM615 114h11v10h-11zM615 104h11v10h-11zM626 114h11v10h-11zM626 104h11v10h-11zM637 114h11v10h-11zM637 104h11v10h-11zM648 114h11v10h-11zM648 104h11v10h-11zM659 114h11v10h-11zM659 104h11v10h-11zM670 124h11v10h-11zM670 114h11v10h-11zM681 124h11v10h-11zM692 134h11v10h-11zM692 124h11v10h-11zM703 144h11v10h-11zM703 134h11v10h-11zM714 144h11v10h-11zM714 134h11v10h-11zM725 144h11v10h-11zM736 154h11v10h-11zM736 144h11v10h-11zM747 154h11v10h-11zM758 164h11v10h-11zM769 164h11v10h-11zM780 174h11v10h-11zM791 184h11v10h-11zM802 184h11v10h-11zM813 194h11v10h-11zM835 204h11v10h-11zM846 214h11v10h-11zM868 224h11v10h-11z"/><path fill="rgb(38,134,140)" d="M516 134h11v10h-11zM516 124h11v10h-11zM527 134h11v10h-11zM527 124h11v10h-11zM538 134h11v10h-11zM538 124h11v10h-11zM549 134h11v10h-11zM549 124h11v10h-11zM560 134h11v10h-11zM560 124h11v10h-11zM571 134h11v10h-11zM571 124h11v10h-11zM582 134h11v10h-11zM582 124h11v10h-11zM593 134h11v10h-11zM593 124h11v10h-11zM604 134h11v10h-11zM604 124h11v10h-11zM615 134h11v10h-11zM615 124h11v10h-11zM626 134h11v10h-11zM626 124h11v10h-11zM637 134h11v10h-11zM637 124h11v10h-11zM648 134h11v10h-11zM648 124h11v10h-11zM659 134h11v10h-11zM659 124h11v10h-11zM670 134h11v10h-11zM681 144h11v10h-11zM681 134h11v10h-11zM692 144h11v10h-11zM703 154h11v10h-11zM714 154h11v10h-11zM725 154h11v10h-11zM736 164h11v10h-11zM747 164h11v10h-11zM758 174h11v10h-11zM769 174h11v10h-11zM780 184h11v10h-11zM802 194h11v10h-11zM824 204h11v10h-11z"/><path fill="rgb(44,155,132)" d="M516 154h11v10h-11zM516 144h11v10h-11zM527 154h11v10h-11zM527 144h11v10h-11zM538 154h11v10h-11zM538 144h11v10h-11zM549 154h11v10h-11zM549 144h11v10h-11zM560 154h11v10h-11zM560 144h11v10h-11zM571 154h11v10h-11zM571 144h11v10h-11zM582 154h11v10h-11zM582 144h11v10h-11zM593 154h11v10h-11zM593 144h11v10h-11zM604 154h11v10h-11zM604 144h11v10h-11zM615 154h11v10h-11zM615 144h11v10h-11zM626 154h11v10h-11zM626 144h11v10h-11zM637 154h11v10h-11zM637 144h11v10h-11zM648 154h11v10h-11zM648 144h11v10h-11zM659 154h11v10h-11zM659 144h11v10h-11zM670 154h11v10h-11zM670 144h11v10h-11zM681 164h11v10h-11zM681 154h11v10h-11zM692 164h11v10h-11zM692 154h11v10h-11zM703 164h11v10h-11zM714 164h11v10h-11zM725 174h11v10h-11zM725 164h11v10h-11zM736 174h11v10h-11zM747 184h11v10h-11zM747 174h11v10h-11zM758 184h11v10h-11zM769 184h11v10h-11zM780 194h11v10h-11zM791 194h11v10h-11zM802 204h11v10h-11zM813 204h11v10h-11zM824 214h11v10h-11zM835 214h11v10h-11zM857 224h11v10h-11zM879 234h11v10h-11z"/><path fill="rgb(66,176,117)" d="M516 164h11v10h-11zM527 164h11v10h-11zM538 164h11v10h-11zM549 164h11v10h-11zM560 164h11v10h-11zM571 164h11v10h-11zM582 164h11v10h-11zM593 164h11v10h-11zM604 164h11v10h-11zM615 164h11v10h-11zM626 164h11v10h-11zM637 164h11v10h-11zM648 164h11v10h-11zM659 164h11v10h-11zM670 174h11v10h-11zM670 164h11v10h-11zM681 174h11v10h-11zM692 174h11v10h-11zM703 184h11v10h-11zM703 174h11v10h-11zM714 184h11v10h-11zM714 174h11v10h-11zM725 184h11v10h-11zM736 184h11v10h-11zM747 194h11v10h-11zM758 194h11v10h-11zM769 194h11v10h-11zM780 204h11v10h-11zM791 204h11v10h-11zM813 214h11v10h-11zM846 224h11v10h-11z"/><path fill="rgb(88,196,102)" d="M516 184h11v10h-11zM516 174h11v10h-11zM527 184h11v10h-11zM527 174h11v10h-11zM538 184h11v10h-11zM538 174h11v10h-11zM549 184h11v10h-11zM549 174h11v10h-11zM560 184h11v10h-11zM560 174h11v10h-11zM571 184h11v10h-11zM571 174h11v10h-11zM582 184h11v10h-11zM582 174h11v10h-11zM593 184h11v10h-11zM593 174h11v10h-11zM604 184h11v10h-11zM604 174h11v10h-11zM615 184h11v10h-11zM615 174h11v10h-11zM626 184h11v10h-11zM626 174h11v10h-11zM637 184h11v10h-11zM637 174h11v10h-11zM648 184h11v10h-11zM648 174h11v10h-11zM659 184h11v10h-11zM659 174h11v10h-11zM670 184h11v10h-11zM681 194h11v10h-11zM681 184h11v10h-11zM692 194h11v10h-11zM692 184h11v10h-11zM703 194h11v10h-11zM714 194h11v10h-11zM725 194h11v10h-11zM736 204h11v10h-11zM736 194h11v10h-11zM747 204h11v10h-11zM758 204h11v10h-11zM769 204h11v10h-11zM780 214h11v10h-11zM791 214h11v10h-11zM802 214h11v10h-11zM824 224h11v10h-11zM835 224h11v10h-11zM868 234h11v10h-11z"/><path fill="rgb(137,209,81)" d="M516 204h11v10h-11zM516 194h11v10h-11zM527 204h11v10h-11zM527 194h11v10h-11zM538 204h11v10h-11zM538 194h11v10h-11zM549 204h11v10h-11zM549 194h11v10h-11zM560 204h11v10h-11zM560 194h11v10h-11zM571 204h11v10h-11zM571 194h11v10h-11zM582 204h11v10h-11zM582 194h11v10h-11zM593 204h11v10h-11zM593 194h11v10h-11zM604 204h11v10h-11zM604 194h11v10h-11zM615 204h11v10h-11zM615 194h11v10h-11zM626 204h11v10h-11zM626 194h11v10h-11zM637 204h11v10h-11zM637 194h11v10h-11zM648 204h11v10h-11zM648 194h11v10h-11zM659 204h11v10h-11zM659 194h11v10h-11zM670 204h11v10h-11zM670 194h11v10h-11zM681 204h11v10h-11zM692 204h11v10h-11zM703 214h11v10h-11zM703 204h11v10h-11zM714 214h11v10h-11zM714 204h11v10h-11zM725 214h11v10h-11zM725 204h11v10h-11zM736 214h11v10h-11zM747 214h11v10h-11zM758 214h11v10h-11zM769 214h11v10h-11zM780 224h11v10h-11zM791 224h11v10h-11zM802 224h11v10h-11zM813 224h11v10h-11zM846 234h11v10h-11zM857 234h11v10h-11z"/><path fill="rgb(195,220,59)" d="M516 224h11v10h-11zM516 214h11v10h-11zM527 224h11v10h-11zM527 214h11v10h-11zM538 224h11v10h-11zM538 214h11v10h-11zM549 224h11v10h-11zM549 214h11v10h-11zM560 224h11v10h-11zM560 214h11v10h-11zM571 224h11v10h-11zM571 214h11v10h-11zM582 224h11v10h-11zM582 214h11v10h-11zM593 224h11v10h-11zM593 214h11v10h-11zM604 224h11v10h-11zM604 214h11v10h-11zM615 224h11v10h-11zM615 214h11v10h-11zM626 224h11v10h-11zM626 214h11v10h-11zM637 224h11v10h-11zM637 214h11v10h-11zM648 224h11v10h-11zM648 214h11v10h-11zM659 224h11v10h-11zM659 214h11v10h-11zM670 224h11v10h-11zM670 214h11v10h-11zM681 224h11v10h-11zM681 214h11v10h-11zM692 224h11v10h-11zM692 214h11v10h-11zM703 224h11v10h-11zM714 224h11v10h-11zM725 224h11v10h-11zM736 224h11v10h-11zM747 224h11v10h-11zM758 224h11v10h-11zM769 224h11v10h-11zM780 234h11v10h-11zM791 234h11v10h-11zM802 234h11v10h-11zM813 234h11v10h-11zM824 234h11v10h-11zM835 234h11v10h-11z"/><path fill="rgb(253,231,37)" d="M516 244h11v10h-11zM516 234h11v10h-11zM527 244h11v10h-11zM527 234h11v10h-11zM538 244h11v10h-11zM538 234h11v10h-11zM549 244h11v10h-11zM549 234h11v10h-11zM560 244h11v10h-11zM560 234h11v10h-11zM571 244h11v10h-11zM571 234h11v10h-11zM582 244h11v10h-11zM582 234h11v10h-11zM593 244h11v10h-11zM593 234h11v10h-11zM604 244h11v10h-11zM604 234h11v10h-11zM615 244h11v10h-11zM615 234h11v10h-11zM626 244h11v10h-11zM626 234h11v10h-11zM637 244h11v10h-11zM637 234h11v10h-11zM648 244h11v10h-11zM648 234h11v10h-11zM659 244h11v10h-11zM659 234h11v10h-11zM670 244h11v10h-11zM670 234h11v10h-11zM681 244h11v10h-11zM681 234h11v10h-11zM692 244h11v10h-11zM692 234h11v10h-11zM703 244h11v10h-11zM703 234h11v10h-11zM714 244h11v10h-11zM714 234h11v10h-11zM725 244h11v10h-11zM725 234h11v10h-11zM736 244h11v10h-11zM736 234h11v10h-11zM747 244h11v10h-11zM747 234h11v10h-11zM758 244h11v10h-11zM758 234h11v10h-11zM769 244h11v10h-11zM769 234h11v10h-11zM780 244h11v10h-11zM791 244h11v10h-11zM802 244h11v10h-11zM813 244h11v10h-11zM824 244h11v10h-11zM835 244h11v10h-11zM846 244h11v10h-11zM857 244h11v10h-11zM868 244h11v10h-11zM879 244h11v10h-11zM890 244h11v10h-11zM901 244h11v10h-11z"/><rect x="516" y="34" width="396" height="220" fill="none" class="axis"/>
+      <text class="tick" x="595" y="271" text-anchor="middle">0.2</text><text class="tick" x="714" y="271" text-anchor="middle">0.5</text><text class="tick" x="833" y="271" text-anchor="middle">0.8</text>
+      <text class="axlab" x="714" y="288" text-anchor="middle">物品尺寸 i</text>
+  <text class="axlab" transform="rotate(-90 16 144)" x="16" y="144" text-anchor="middle">放入后的缝隙 g</text>
+  <rect x="58" y="306" width="18" height="9" fill="rgb(68,1,84)"/><rect x="76" y="306" width="18" height="9" fill="rgb(65,30,104)"/><rect x="94" y="306" width="18" height="9" fill="rgb(61,60,124)"/><rect x="112" y="306" width="18" height="9" fill="rgb(57,88,139)"/><rect x="130" y="306" width="18" height="9" fill="rgb(47,111,139)"/><rect x="148" y="306" width="18" height="9" fill="rgb(38,134,140)"/><rect x="166" y="306" width="18" height="9" fill="rgb(44,155,132)"/><rect x="184" y="306" width="18" height="9" fill="rgb(66,176,117)"/><rect x="202" y="306" width="18" height="9" fill="rgb(88,196,102)"/><rect x="220" y="306" width="18" height="9" fill="rgb(137,209,81)"/><rect x="238" y="306" width="18" height="9" fill="rgb(195,220,59)"/><rect x="256" y="306" width="18" height="9" fill="rgb(253,231,37)"/>
+  <text class="tick" x="58" y="330">最不想要</text>
+  <text class="tick" x="274" y="330" text-anchor="end">最想要</text>
+</svg>
+<figcaption>每一列是一个物品尺寸，纵轴是放进去之后剩下的缝隙，颜色是这条规则对该缝隙的偏好排名（亮=更想要）。<strong>右边 Best Fit 是一片干净的渐变</strong>，因为它只认"缝隙越小越好"。左边一旦出现横向暗带，就说明进化找到了一类它<strong>宁可不要</strong>的缝隙 —— 通常是小到再也塞不进任何东西、纯属浪费的死区。这张图就是当前策略的全部内容，冠军一换就会重画。</figcaption></figure>
+</section>
+
+<section id="score">
+  <h2><span class="idx mono">04</span>成绩单</h2>
+  <p>所有在线算法跑的是同一套实例、同一个装箱器，唯一的差别就是那个评分函数。Best Fit 是本项目的第 0 代，也就是进化的起点。最右一列是留出集上的<strong>超额率之差</strong>，负数表示比 Best Fit 用掉更少的箱子。留出集是三折里唯一没被任何决定碰过的那一折。</p>
+  
+<table class="tbl">
+  <thead><tr>
+    <th>算法</th><th class="num">训练折</th><th class="num">验证折</th><th class="num">留出集</th>
+    <th class="num">留出集 − Best Fit</th><th>说明</th>
+  </tr></thead>
+  <tbody>
+    <tr class="champrow">
+      <td><strong>当前冠军</strong> <span class="pill">第 0 代</span></td>
+      <td class="num mono strong">4.125%</td>
+      <td class="num mono">4.240%</td>
+      <td class="num mono strong">4.493%</td>
+      <td class="num mono bad">+0.000 pp</td>
+      <td>进化产物，2 个节点，读取 g</td>
+    </tr>
+    <tr class="">
+        <td>下次适应 <span class="mono dim">Next Fit</span></td>
+        <td class="num mono">26.859%</td>
+        <td class="num mono">25.289%</td>
+        <td class="num mono">26.218%</td>
+        <td class="num mono bad">+21.724 pp</td>
+        <td>只保留最后一个箱子，其余全部封箱</td>
+      </tr><tr class="">
+        <td>首次适应 <span class="mono dim">First Fit</span></td>
+        <td class="num mono">4.462%</td>
+        <td class="num mono">4.703%</td>
+        <td class="num mono">4.670%</td>
+        <td class="num mono bad">+0.177 pp</td>
+        <td>放进第一个装得下的箱子</td>
+      </tr><tr class="">
+        <td>最差适应 <span class="mono dim">Worst Fit</span></td>
+        <td class="num mono">11.620%</td>
+        <td class="num mono">11.606%</td>
+        <td class="num mono">12.009%</td>
+        <td class="num mono bad">+7.516 pp</td>
+        <td>放进最空的箱子</td>
+      </tr><tr class="">
+        <td>最佳适应 <span class="mono dim">Best Fit</span></td>
+        <td class="num mono">4.125%</td>
+        <td class="num mono">4.240%</td>
+        <td class="num mono">4.493%</td>
+        <td class="num mono dim">—</td>
+        <td>放进缝隙最小的箱子，也是本项目的第 0 代</td>
+      </tr><tr class="offline">
+        <td>降序最佳适应 <span class="mono dim">Best Fit Decreasing</span><span class="pill warn">离线</span></td>
+        <td class="num mono">2.822%</td>
+        <td class="num mono">2.972%</td>
+        <td class="num mono">2.924%</td>
+        <td class="num mono good">−1.569 pp</td>
+        <td>先把所有物品降序排好再放 — 需要预知全部输入，不是同一个赛道</td>
+      </tr>
+  </tbody>
+</table>
+  <p class="note">Best Fit Decreasing 那一行是<strong>离线</strong>算法，它可以先看到全部物品再排序。放在这里是为了给出一个"如果允许预知未来能做到多好"的参照，不是进化的目标。在线算法在这套实例上追平它是不该轻易发生的事 —— 真发生了，第一反应应该是怀疑实例集出了问题。</p>
+  
+</section>
+
+<section id="eco">
+  <h2><span class="idx mono">05</span>进化曲线</h2>
+  <p class="dim">需要至少两代才能画出曲线。第一次 cron 运行后这里会出现图表。</p>
+  
+</section>
+
+
+
+
+
+<section id="lineage">
+  <h2><span class="idx mono">08</span>世代谱系</h2>
+  <p>每一行都带着当晚的随机种子。种子由「日期 + 世代号」哈希而来，所以任何一代都可以原样重放：同样的种子、同样的实例集、同样的算子权重，必然得到同样的结果。这份记录只追加，不修改。</p>
+  <p class="note small">标着 <span class="pill">genesis</span> 的几行，是项目诞生当天一口气跑完的「创世冲刺」，日期都是 2026-09-17，不是一天一代。照实标出来、而不是把它们摊成好几个日期，是因为这张表一旦可以修饰，它就不再是证据。冲刺之后就是每天凌晨一代。</p>
+  <p class="dim">还没有世代记录。</p>
+  <h3>里程碑</h3>
+  <p class="dim">还没有里程碑。</p>
+</section>
+
+<section id="log">
+  <h2><span class="idx mono">09</span>实验日志</h2>
+  <p>每晚一条，由当次运行的遥测数据生成，包括失败的夜晚和泛化变差的夜晚。</p>
+  <p class="dim">还没有日志。第一次 cron 运行后这里会出现内容。</p>
+</section>
+
+<section id="guard">
+  <h2><span class="idx mono">10</span>护栏：什么能自己改，什么不能</h2>
+  <p>一个能改自己的系统，最有意思的问题不是"它能改多少"，而是"哪些地方<strong>故意</strong>不让它改，为什么"。下面这张表是这个项目的实际边界。</p>
+  
+<table class="tbl">
+  <thead><tr><th class="num">层级</th><th>可改写的东西</th><th>谁能改</th><th>状态</th><th>为什么划在这里</th></tr></thead>
+  <tbody><tr>
+    <td class="num mono">L0</td>
+    <td><strong>启发式表达式</strong></td>
+    <td class="mono small">引擎</td>
+    <td><span class="tag ok">开放</span></td>
+    <td class="small">受频次最高、后果最小。改错了只是装箱差一点，而且有验收测试挡着。</td>
+  </tr><tr>
+    <td class="num mono">L1</td>
+    <td><strong>算子权重 / 退火步长 / 算力预算</strong></td>
+    <td class="mono small">引擎</td>
+    <td><span class="tag ok">开放</span></td>
+    <td class="small">改的是搜索怎么花钱，不是什么算赢。改坏了下一晚会自己纠回来。</td>
+  </tr><tr>
+    <td class="num mono">L1+</td>
+    <td><strong>合成新的组合算子</strong></td>
+    <td class="mono small">引擎</td>
+    <td><span class="tag ok">开放</span></td>
+    <td class="small">只能由已有算子按顺序拼接，搜索空间真的变大了，但新算子的每个零件都已经审过。最多 4 个。</td>
+  </tr><tr>
+    <td class="num mono">L2</td>
+    <td><strong>验收标准（三折划分、接受阈值、下界计算）</strong></td>
+    <td class="mono small">人</td>
+    <td><span class="tag no">关闭</span></td>
+    <td class="small">让被评的一方去改评分规则，是这类系统最短的一条作弊路径。实例集有指纹，动了就拒绝继续进化。</td>
+  </tr><tr>
+    <td class="num mono">L3</td>
+    <td><strong>引擎自身的源代码</strong></td>
+    <td class="mono small">人（走 PR）</td>
+    <td><span class="tag no">关闭</span></td>
+    <td class="small">不是做不到，是做了就没有一个不被它改写的地方能站着说话。这条线的位置是设计决定，不是能力上限。</td>
+  </tr></tbody>
+</table>
+  <h3>每晚实际执行的检查</h3>
+  <ol class="checks">
+    <li><strong>实例集指纹</strong>：启动时重算 8,000 件物品的哈希，与基因组里记录的 <code class="mono">af6d6118</code> 比对，不符则直接退出，不进化。</li>
+    <li><strong>冠军完整性</strong>：重新评测已提交的冠军，得分必须与记录一致到 1e-9。不一致会写进日志并按重算结果修正 —— 这是检测非确定性的哨兵。</li>
+    <li><strong>语法白名单</strong>：任何候选，无论来自变异算子还是语言模型，都必须先通过表达式语法校验（只允许 11 个算子和 4 个变量）才会被编译。提议者永远碰不到编译器。</li>
+    <li><strong>渲染确定性</strong>：提交前重新渲染整个页面，与即将提交的文件逐字节比对。渲染器里一旦出现时间戳或随机数，构建就会失败。</li>
+    <li><strong>双重接受条件</strong>：新冠军必须在训练折上严格更优（余量 0.004 pp，平手不算赢），<em>并且</em>在验证折上一个箱子都不多用。迄今为止已有 0 个在训练折上确实更优的候选倒在第二条上。</li>
+    <li><strong>失败即回滚</strong>：以上任何一条不通过，工作流丢弃改动并以非零码退出，当天不提交、不发布。</li>
+  </ol>
+  <p class="note">最后一条值得单说。<strong>把验收标准交给被评的一方，是这类系统最短的一条作弊路径</strong> —— 与其让启发式变好，不如让"好"的定义变松。所以实例集、下界计算、接受阈值全部在引擎的可改写范围之外，而且有指纹保护。这不是因为现在的引擎有多危险，而是因为这条边界一旦模糊，后面所有的数字就都不再是证据。</p>
+</section>
+
+<section id="repro">
+  <h2><span class="idx mono">11</span>怎么自己跑一遍</h2>
+  <p>零依赖，Node 20 以上，不需要 API key。</p>
+  <pre class="mono"><code>git clone https://github.com/Yongcheng123/ouroboros
+cd ouroboros
+node engine/evolve.mjs --date=2026-01-01 --generations=5
+node tools/selfcheck.mjs
+open index.html</code></pre>
+  <h3>文件结构</h3>
+  <table class="tbl">
+    <thead><tr><th>文件</th><th>职责</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">genome.json</td><td class="small">全部可进化状态：冠军表达式、精英档案、算子权重、σ、预算、里程碑、日志。这是"这个系统学到了什么"的完整快照。</td></tr>
+      <tr><td class="mono">history.json</td><td class="small">只追加的世代记录。</td></tr>
+      <tr><td class="mono">engine/expr.mjs</td><td class="small">表达式树的语法、校验、编译、化简、渲染。信任边界在这里。</td></tr>
+      <tr><td class="mono">engine/problems.mjs</td><td class="small">冻结的基准实例集。改这个文件等于作废全部历史。</td></tr>
+      <tr><td class="mono">engine/benchmark.mjs</td><td class="small">装箱器与打分。唯一有裁决权的文件。</td></tr>
+      <tr><td class="mono">engine/operators.mjs</td><td class="small">八个变异算子与权重更新规则。</td></tr>
+      <tr><td class="mono">engine/evolve.mjs</td><td class="small">每晚的编排：验完整性 → 搜索 → 选择 → 自适应 → 记录 → 渲染。</td></tr>
+      <tr><td class="mono">engine/render.mjs</td><td class="small">基因组 → 这张网页。确定性。</td></tr>
+      <tr><td class="mono">engine/proposer-llm.mjs</td><td class="small">可选。让语言模型也来提候选，走同一道验收关。没有 API key 时整个文件不参与。</td></tr>
+      <tr><td class="mono">tools/selfcheck.mjs</td><td class="small">提交前的六项检查。</td></tr>
+    </tbody>
+  </table>
+  <h3>可选：把语言模型接进提议环节</h3>
+  <p>设好 <code class="mono">ANTHROPIC_API_KEY</code> 并 <code class="mono">npm i @anthropic-ai/sdk</code> 之后，加 <code class="mono">--llm</code> 参数，模型会看到当前冠军、精英档案和最近日志，提出若干候选表达式。它们和变异算子产出的候选走完全相同的一道关：语法校验 → 编译 → 同一套实例集 → 同一个阈值。模型不知道验收标准长什么样，也写不进基因组。<strong>提议可以不可信，裁决必须可信</strong> —— 这条分界是这个项目唯一想认真讲清楚的事。</p>
+  
+</section>
+
+<footer>
+  <div class="fgrid">
+    <div><span class="fk">第 0 代</span><span class="fv mono">2026-09-17</span></div>
+    <div><span class="fk">上次运行种子</span><span class="fv mono">0</span></div>
+    <div><span class="fk">实例集指纹</span><span class="fv mono">af6d6118</span></div>
+    <div><span class="fk">诞生于</span><span class="fv mono">2026-09-17</span></div>
+  </div>
+  <p class="small dim">这个页面由 <code class="mono">engine/render.mjs</code> 从 <code class="mono">genome.json</code> 生成，每天 UTC 20:17（北京时间次日 04:17）由 GitHub Actions 的定时任务重跑一次。没有前端框架，没有外部请求，没有统计脚本，不需要 JavaScript —— 整页就是你下载到的这一个文件，离线也能看。</p>
+  <p class="small"><a href="https://github.com/Yongcheng123/ouroboros">源码与全部提交</a> · <a href="https://github.com/Yongcheng123/ouroboros/commits/main">逐代的 git diff</a> · <a href="https://github.com/Yongcheng123/ouroboros/actions">每晚的运行日志</a> · <a href="https://github.com/Yongcheng123/ouroboros/blob/main/DESIGN.md">设计说明</a></p>
+</footer>
+
+</div>
+</body>
+</html>

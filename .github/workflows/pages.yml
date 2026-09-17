@@ -1,0 +1,43 @@
+name: pages
+
+# Publishes on a human push. The nightly job publishes on its own, because a
+# push made with GITHUB_TOKEN does not trigger other workflows -- that is a
+# deliberate GitHub rule against workflow loops, and the reason the deploy job
+# is duplicated in evolve.yml rather than factored out to here.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'genome.json'
+      - 'history.json'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ouroboros-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble the published site
+        run: |
+          mkdir -p _site
+          cp index.html genome.json history.json _site/
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

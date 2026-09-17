@@ -1,0 +1,126 @@
+name: evolve
+
+# One generation per night. 20:17 UTC is 04:17 Asia/Shanghai, so a new
+# generation is waiting by the time anyone in China looks at it.
+# GitHub's scheduler is best-effort and can run late; the engine keys every
+# run on the calendar date, so a late run is still a correct run.
+on:
+  schedule:
+    - cron: '17 20 * * *'
+  workflow_dispatch:
+    inputs:
+      generations:
+        description: '这次跑几代'
+        required: false
+        default: '1'
+      evaluations:
+        description: '覆盖本次评估预算（留空则用基因组里自适应出来的值）'
+        required: false
+        default: ''
+      llm:
+        description: '同时让语言模型提候选（需要 ANTHROPIC_API_KEY secret）'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Never two nights at once: the genome is a single mutable file.
+concurrency:
+  group: ouroboros-evolve
+  cancel-in-progress: false
+
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install optional LLM proposer
+        if: inputs.llm == true
+        run: npm install --no-save @anthropic-ai/sdk
+
+      # Inputs travel through the environment, never through ${{ }} expansion
+      # into a shell line -- that is a script-injection hole even when only
+      # collaborators can dispatch the workflow.
+      - name: Evolve one generation
+        id: evolve
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          IN_GENERATIONS: ${{ inputs.generations }}
+          IN_EVALUATIONS: ${{ inputs.evaluations }}
+          IN_LLM: ${{ inputs.llm }}
+        run: |
+          set -euo pipefail
+          DATE=$(TZ=Asia/Shanghai date +%F)
+          GENS=$(printf '%s' "${IN_GENERATIONS:-1}" | tr -cd '0-9')
+          EVALS=$(printf '%s' "${IN_EVALUATIONS:-}" | tr -cd '0-9')
+          set -- "--date=$DATE" "--generations=${GENS:-1}"
+          if [ -n "$EVALS" ]; then set -- "$@" "--evaluations=$EVALS"; fi
+          if [ "${IN_LLM:-}" = "true" ]; then set -- "$@" "--llm=true"; fi
+          echo "running: node engine/evolve.mjs $*"
+          node engine/evolve.mjs "$@" | tee run.log
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+
+      # The gate. Eleven checks, including a byte-for-byte re-render of index.html.
+      - name: Verify before publishing
+        run: node tools/selfcheck.mjs
+
+      # A failed verification must leave no trace: no commit, no deploy.
+      - name: Discard the night on failure
+        if: failure()
+        run: |
+          git checkout -- .
+          echo "::error::selfcheck failed — working tree discarded, nothing committed"
+
+      - name: Commit the new generation
+        run: |
+          set -euo pipefail
+          git config user.name  "ouroboros"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A index.html genome.json history.json
+          if git diff --cached --quiet; then
+            echo "nothing changed — not committing"
+          else
+            git commit -F .commitmsg
+            git push
+          fi
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "### OUROBOROS — ${{ steps.evolve.outputs.date }}"
+            echo ''
+            echo '```'
+            cat run.log 2>/dev/null || echo '(no run log)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Assemble the published site
+        run: |
+          mkdir -p _site
+          cp index.html genome.json history.json _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: evolve
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

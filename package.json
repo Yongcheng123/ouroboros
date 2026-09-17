@@ -1,0 +1,14 @@
+{
+  "name": "ouroboros",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A website that rewrites itself every day. Recursive self-improvement on online bin packing.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "evolve": "node engine/evolve.mjs",
+    "render": "node engine/render.mjs",
+    "check": "node tools/selfcheck.mjs",
+    "serve": "node --run-nothing 2>/dev/null || python3 -m http.server 8080"
+  }
+}
