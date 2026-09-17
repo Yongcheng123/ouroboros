@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>第 3 代 · OUROBOROS</title>
-<meta name="description" content="一个每天重写自己的网站。在线装箱问题上的递归自我改进，第 3 代，训练集超额率 3.117%。">
+<title>第 4 代 · OUROBOROS</title>
+<meta name="description" content="一个每天重写自己的网站。在线装箱问题上的递归自我改进，第 4 代，训练集超额率 3.117%。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237cf5a8' stroke-width='3.5' stroke-dasharray='58 12'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -211,18 +211,18 @@ footer .note{margin-top:10px}
     </div>
   </div>
   <div class="genbox">
-    <div class="genno mono">GEN 3</div>
+    <div class="genno mono">GEN 4</div>
     <div class="gendate mono">2026-09-17</div>
-    <div class="genstate"><span class="tag ok">昨夜有改进</span></div>
+    <div class="genstate"><span class="tag no">昨夜维持原样</span></div>
   </div>
 </header>
 
 <section class="hero">
-  <p class="lede">这一页不是我写完就定稿的。它每天凌晨自己重跑一遍搜索，如果找到更好的东西，就改写自己，提交到 Git，重新发布。你现在读到的数字、表格、图，还有下面那段实验日志，都是第 3 代的产物。</p>
+  <p class="lede">这一页不是我写完就定稿的。它每天凌晨自己重跑一遍搜索，如果找到更好的东西，就改写自己，提交到 Git，重新发布。你现在读到的数字、表格、图，还有下面那段实验日志，都是第 4 代的产物。</p>
   <div class="stats">
     <div class="stat"><div class="sk">留出集超额率</div><div class="sv mono ">4.098%</div><div class="ss">训练折 3.117%，越低越好</div></div>
     <div class="stat"><div class="sk">留出集比 Best Fit 低</div><div class="sv mono good">0.395 pp</div><div class="ss">训练折低 1.008 pp</div></div>
-    <div class="stat"><div class="sk">累计评估候选</div><div class="sv mono ">32,520</div><div class="ss">接受 3 次</div></div>
+    <div class="stat"><div class="sk">累计评估候选</div><div class="sv mono ">41,268</div><div class="ss">接受 3 次</div></div>
     <div class="stat"><div class="sk">表达式规模</div><div class="sv mono ">35 节点</div><div class="ss">深度 10</div></div>
   </div>
 </section>
@@ -230,7 +230,7 @@ footer .note{margin-top:10px}
 <nav class="toc"><span>目录</span>
   <a href="#what">是什么</a><a href="#problem">目标问题</a><a href="#champion">当前冠军</a>
   <a href="#score">成绩单</a><a href="#eco">进化曲线</a><a href="#elites">精英档案</a>
-  <a href="#lineage">世代谱系</a><a href="#log">实验日志</a>
+  <a href="#search">搜索层</a><a href="#lineage">世代谱系</a><a href="#log">实验日志</a>
   <a href="#guard">护栏</a><a href="#repro">复现</a>
 </nav>
 
@@ -254,21 +254,21 @@ footer .note{margin-top:10px}
       <text class="lidx" style="fill:var(--acc2)" x="36" y="136">L1</text>
       <text class="ltitle" x="92" y="124">搜索层 · 变异算子</text>
       <text class="ldesc" x="92" y="146">八个算子改写 L0 的表达式树，MAP-Elites 维持多样性</text>
-      <text class="lmeta" style="fill:var(--acc2)" x="908" y="136" text-anchor="end">10 个算子在册</text>
+      <text class="lmeta" style="fill:var(--acc2)" x="908" y="136" text-anchor="end">11 个算子在册</text>
       <path class="arrow" d="M470 162 L470 178" marker-end="url(#ah2)"/>
     </g><g>
       <rect class="layer" x="16" y="174" width="908" height="66" rx="6" style="stroke:var(--acc3)"/>
       <text class="lidx" style="fill:var(--acc3)" x="36" y="214">L2</text>
       <text class="ltitle" x="92" y="202">元层 · 信用分配</text>
       <text class="ldesc" x="92" y="224">按实测命中率重新分配算子权重、退火步长与算力预算</text>
-      <text class="lmeta" style="fill:var(--acc3)" x="908" y="214" text-anchor="end">σ=0.2187，预算 8,748</text>
+      <text class="lmeta" style="fill:var(--acc3)" x="908" y="214" text-anchor="end">σ=0.2952，预算 12,247</text>
       <path class="arrow" d="M470 240 L470 256" marker-end="url(#ah2)"/>
     </g><g>
       <rect class="layer" x="16" y="252" width="908" height="66" rx="6" style="stroke:var(--acc4)"/>
       <text class="lidx" style="fill:var(--acc4)" x="36" y="292">L3</text>
       <text class="ltitle" x="92" y="280">叙述层 · 本页</text>
       <text class="ldesc" x="92" y="302">基因组确定性地编译成这张网页，包括你正在读的这段</text>
-      <text class="lmeta" style="fill:var(--acc4)" x="908" y="292" text-anchor="end">第 3 代</text>
+      <text class="lmeta" style="fill:var(--acc4)" x="908" y="292" text-anchor="end">第 4 代</text>
       
     </g>
 </svg>
@@ -507,11 +507,11 @@ footer .note{margin-top:10px}
   <g><line class="grid" x1="62" y1="231.8" x2="922" y2="231.8"/><line class="grid" x1="62" y1="166.2" x2="922" y2="166.2"/><line class="grid" x1="62" y1="100.7" x2="922" y2="100.7"/><line class="grid" x1="62" y1="35.1" x2="922" y2="35.1"/></g>
   <line class="axis" x1="62" y1="20" x2="62" y2="284"/>
   <line class="axis" x1="62" y1="284" x2="922" y2="284"/>
-  <text class="tick" x="52" y="235.8" text-anchor="end">3.00%</text><text class="tick" x="52" y="170.2" text-anchor="end">3.50%</text><text class="tick" x="52" y="104.7" text-anchor="end">4.00%</text><text class="tick" x="52" y="39.1" text-anchor="end">4.50%</text><text class="tick" x="492.0" y="304" text-anchor="middle">2</text>
+  <text class="tick" x="52" y="235.8" text-anchor="end">3.00%</text><text class="tick" x="52" y="170.2" text-anchor="end">3.50%</text><text class="tick" x="52" y="104.7" text-anchor="end">4.00%</text><text class="tick" x="52" y="39.1" text-anchor="end">4.50%</text><text class="tick" x="348.7" y="304" text-anchor="middle">2</text><text class="tick" x="922.0" y="304" text-anchor="middle">4</text>
     <line class="rule" style="stroke:var(--dim)" x1="62" y1="84.3" x2="922" y2="84.3"/>
     <text class="rulelab" style="fill:var(--dim)" x="918" y="78.3" text-anchor="end">Best Fit 4.125%</text>
     <line class="rule" style="stroke:var(--warn)" x1="62" y1="255.1" x2="922" y2="255.1"/>
-    <text class="rulelab" style="fill:var(--warn)" x="918" y="249.1" text-anchor="end">离线 BFD 2.822%</text><path class="series" style="stroke:var(--acc)" d="M62.0,152.8L492.0,208.3L922.0,216.5"/><circle cx="62.0" cy="152.8" r="2.6" style="fill:var(--acc)"/><circle cx="492.0" cy="208.3" r="2.6" style="fill:var(--acc)"/><circle cx="922.0" cy="216.5" r="2.6" style="fill:var(--acc)"/><path class="series" style="stroke:var(--acc3)" d="M62.0,78.1L492.0,94.6L922.0,94.6"/><circle cx="62.0" cy="78.1" r="2.6" style="fill:var(--acc3)"/><circle cx="492.0" cy="94.6" r="2.6" style="fill:var(--acc3)"/><circle cx="922.0" cy="94.6" r="2.6" style="fill:var(--acc3)"/><path class="series" style="stroke:var(--acc2);stroke-dasharray:5 4" d="M62.0,48.9L492.0,84.7L922.0,87.8"/><circle cx="62.0" cy="48.9" r="2.6" style="fill:var(--acc2)"/><circle cx="492.0" cy="84.7" r="2.6" style="fill:var(--acc2)"/><circle cx="922.0" cy="87.8" r="2.6" style="fill:var(--acc2)"/>
+    <text class="rulelab" style="fill:var(--warn)" x="918" y="249.1" text-anchor="end">离线 BFD 2.822%</text><path class="series" style="stroke:var(--acc)" d="M62.0,152.8L348.7,208.3L635.3,216.5L922.0,216.5"/><circle cx="62.0" cy="152.8" r="2.6" style="fill:var(--acc)"/><circle cx="348.7" cy="208.3" r="2.6" style="fill:var(--acc)"/><circle cx="635.3" cy="216.5" r="2.6" style="fill:var(--acc)"/><circle cx="922.0" cy="216.5" r="2.6" style="fill:var(--acc)"/><path class="series" style="stroke:var(--acc3)" d="M62.0,78.1L348.7,94.6L635.3,94.6L922.0,94.6"/><circle cx="62.0" cy="78.1" r="2.6" style="fill:var(--acc3)"/><circle cx="348.7" cy="94.6" r="2.6" style="fill:var(--acc3)"/><circle cx="635.3" cy="94.6" r="2.6" style="fill:var(--acc3)"/><circle cx="922.0" cy="94.6" r="2.6" style="fill:var(--acc3)"/><path class="series" style="stroke:var(--acc2);stroke-dasharray:5 4" d="M62.0,48.9L348.7,84.7L635.3,87.8L922.0,87.8"/><circle cx="62.0" cy="48.9" r="2.6" style="fill:var(--acc2)"/><circle cx="348.7" cy="84.7" r="2.6" style="fill:var(--acc2)"/><circle cx="635.3" cy="87.8" r="2.6" style="fill:var(--acc2)"/><circle cx="922.0" cy="87.8" r="2.6" style="fill:var(--acc2)"/>
     <g transform="translate(62,14)">
       <rect width="18" height="3" y="-3" rx="1.5" style="fill:var(--acc)"/>
       <text class="legend" x="24" y="1">训练折 · 用于选择</text>
@@ -545,10 +545,10 @@ footer .note{margin-top:10px}
       <td class="expr mono">1/(g)</td>
     </tr><tr class="">
       <td class="num mono">4-6</td>
-      <td class="num mono">4.002%</td>
-      <td class="num mono dim">4.306%</td>
-      <td class="num mono dim">1</td>
-      <td class="expr mono">−min(g, 0.022) + -0.125</td>
+      <td class="num mono">3.647%</td>
+      <td class="num mono dim">5.131%</td>
+      <td class="num mono dim">4</td>
+      <td class="expr mono">ln|r|·min(g, 0.0713)</td>
     </tr><tr class="">
       <td class="num mono">7-10</td>
       <td class="num mono">3.507%</td>
@@ -569,10 +569,10 @@ footer .note{margin-top:10px}
       <td class="expr mono">min(4.306, ln|r|)·√|r|·−min(g, (max(i, g))²)·ln|g| + max(g, 0.595)</td>
     </tr><tr class="">
       <td class="num mono">23-32</td>
-      <td class="num mono">3.177%</td>
+      <td class="num mono">3.117%</td>
       <td class="num mono dim">4.098%</td>
-      <td class="num mono dim">3</td>
-      <td class="expr mono">max(min(2.203, ln|0 − r|)·√|r|·−min(g, (max(i, g))²)·ln|g|, ln|r|·k) + 0.5·max(g, 0.5)</td>
+      <td class="num mono dim">4</td>
+      <td class="expr mono">max(ln|r|·√|r|·−min(g, (max(i, g))²)·ln|g| + -0.00172·r, ln|r|·k) + 0.5·max(g, 0.5)</td>
     </tr><tr class="champrow">
       <td class="num mono">33-48 <span class="pill">冠军</span></td>
       <td class="num mono">3.117%</td>
@@ -589,7 +589,166 @@ footer .note{margin-top:10px}
 </table>
 </section>
 
-
+<section id="search">
+  <h2><span class="idx mono">07</span>搜索层与元搜索层</h2>
+  <p>八个基础算子负责写出新的表达式。它们的权重不是常数：每晚按实测命中率重估一次，命中率高的下一晚分到更多试验次数。这是 L2 —— 改进搜索本身的那一层。</p>
+  <figure class="chart"><div class="opbars"><div class="opbar">
+      <div class="opname">精英杂交</div>
+      <div class="optrack"><div class="opfill" style="width:9.4%"></div></div>
+      <div class="opnum mono">9.4%</div>
+      <div class="opnum mono dim">命中 0.21%</div>
+    </div><div class="opbar">
+      <div class="opname">追加修正项</div>
+      <div class="optrack"><div class="opfill" style="width:9.3%"></div></div>
+      <div class="opnum mono">9.3%</div>
+      <div class="opnum mono dim">命中 0.33%</div>
+    </div><div class="opbar">
+      <div class="opname">常数退火</div>
+      <div class="optrack"><div class="opfill" style="width:9.3%"></div></div>
+      <div class="opnum mono">9.3%</div>
+      <div class="opnum mono dim">命中 0.16%</div>
+    </div><div class="opbar">
+      <div class="opname">外包生长</div>
+      <div class="optrack"><div class="opfill" style="width:9.2%"></div></div>
+      <div class="opnum mono">9.2%</div>
+      <div class="opnum mono dim">命中 0.16%</div>
+    </div><div class="opbar">
+      <div class="opname">子树替换</div>
+      <div class="optrack"><div class="opfill" style="width:9.2%"></div></div>
+      <div class="opnum mono">9.2%</div>
+      <div class="opnum mono dim">命中 0.13%</div>
+    </div><div class="opbar">
+      <div class="opname">剪枝</div>
+      <div class="optrack"><div class="opfill" style="width:9.2%"></div></div>
+      <div class="opnum mono">9.2%</div>
+      <div class="opnum mono dim">命中 0.16%</div>
+    </div><div class="opbar">
+      <div class="opname">化简</div>
+      <div class="optrack"><div class="opfill" style="width:9.2%"></div></div>
+      <div class="opnum mono">9.2%</div>
+      <div class="opnum mono dim">命中 0.09%</div>
+    </div><div class="opbar">
+      <div class="opname">点突变</div>
+      <div class="optrack"><div class="opfill" style="width:9.1%"></div></div>
+      <div class="opnum mono">9.1%</div>
+      <div class="opnum mono dim">命中 0.07%</div>
+    </div><div class="opbar">
+      <div class="opname">剪枝→化简<span class="minted">合成</span></div>
+      <div class="optrack"><div class="opfill" style="width:8.7%"></div></div>
+      <div class="opnum mono">8.7%</div>
+      <div class="opnum mono dim">命中 0.00%</div>
+    </div><div class="opbar">
+      <div class="opname">追加修正项→外包生长<span class="minted">合成</span></div>
+      <div class="optrack"><div class="opfill" style="width:8.7%"></div></div>
+      <div class="opnum mono">8.7%</div>
+      <div class="opnum mono dim">命中 0.00%</div>
+    </div><div class="opbar">
+      <div class="opname">子树替换→精英杂交<span class="minted">合成</span></div>
+      <div class="optrack"><div class="opfill" style="width:8.6%"></div></div>
+      <div class="opnum mono">8.6%</div>
+      <div class="opnum mono dim">命中 0.00%</div>
+    </div></div>
+  <figcaption>权重不是我设的常数，是每晚按实测命中率重估的。最低 3% 的地板保证没有算子会被永久饿死 —— 昨天没用的思路，明天分布变了可能就有用。</figcaption></figure>
+  
+<table class="tbl">
+  <thead><tr><th>算子</th><th class="num">累计尝试</th><th class="num">命中</th><th class="num">命中率</th><th class="num">权重</th><th>它在做什么</th></tr></thead>
+  <tbody><tr>
+    <td><strong>精英杂交</strong></td>
+    <td class="num mono">7,632</td>
+    <td class="num mono">16</td>
+    <td class="num mono">0.21%</td>
+    <td class="num mono strong">9.4%</td>
+    <td class="small">从另一个精英身上剪一棵子树接到自己身上。唯一会在个体之间搬运结构的算子。</td>
+  </tr><tr>
+    <td><strong>追加修正项</strong></td>
+    <td class="num mono">7,677</td>
+    <td class="num mono">25</td>
+    <td class="num mono">0.33%</td>
+    <td class="num mono strong">9.3%</td>
+    <td class="small">在根部加一个 c·f(...) 的小修正项。专门用来在已经不错的分数上叠加微调，不破坏主干。</td>
+  </tr><tr>
+    <td><strong>常数退火</strong></td>
+    <td class="num mono">7,451</td>
+    <td class="num mono">12</td>
+    <td class="num mono">0.16%</td>
+    <td class="num mono strong">9.3%</td>
+    <td class="small">一次性抖动树里所有常数，步长 σ 由近期接受率自适应。结构不动，只调参数。</td>
+  </tr><tr>
+    <td><strong>外包生长</strong></td>
+    <td class="num mono">7,503</td>
+    <td class="num mono">12</td>
+    <td class="num mono">0.16%</td>
+    <td class="num mono strong">9.2%</td>
+    <td class="small">把随机一棵子树 X 包成 op(X, 新子树)，保留原有结构再往外长一层。</td>
+  </tr><tr>
+    <td><strong>子树替换</strong></td>
+    <td class="num mono">7,730</td>
+    <td class="num mono">10</td>
+    <td class="num mono">0.13%</td>
+    <td class="num mono strong">9.2%</td>
+    <td class="small">把随机一棵子树整个换成新长出来的随机子树。跳得远，多数时候更差，偶尔换来一次结构性突破。</td>
+  </tr><tr>
+    <td><strong>剪枝</strong></td>
+    <td class="num mono">7,634</td>
+    <td class="num mono">12</td>
+    <td class="num mono">0.16%</td>
+    <td class="num mono strong">9.2%</td>
+    <td class="small">用随机一个内部节点的某个孩子顶替它自己。唯一会让表达式变短的破坏性算子，是对抗膨胀的主力。</td>
+  </tr><tr>
+    <td><strong>化简</strong></td>
+    <td class="num mono">7,541</td>
+    <td class="num mono">7</td>
+    <td class="num mono">0.09%</td>
+    <td class="num mono strong">9.2%</td>
+    <td class="small">常数折叠与代数恒等化简。适应度一分不涨，但个体变短后会落进更小的精英格，是唯一&quot;无损&quot;的算子。</td>
+  </tr><tr>
+    <td><strong>点突变</strong></td>
+    <td class="num mono">7,536</td>
+    <td class="num mono">5</td>
+    <td class="num mono">0.07%</td>
+    <td class="num mono strong">9.1%</td>
+    <td class="small">随机挑一个节点：常数就抖动，变量就换一个，算子就换成同元数的另一个。改动最小、命中最密。</td>
+  </tr><tr>
+    <td><strong>剪枝→化简</strong> <span class="pill acc">第 3 代合成</span></td>
+    <td class="num mono">1,411</td>
+    <td class="num mono">0</td>
+    <td class="num mono">0.00%</td>
+    <td class="num mono strong">8.7%</td>
+    <td class="small">引擎在第 3 代自行合成：依次执行 剪枝 → 化简。</td>
+  </tr><tr>
+    <td><strong>追加修正项→外包生长</strong> <span class="pill acc">第 4 代合成</span></td>
+    <td class="num mono">0</td>
+    <td class="num mono">0</td>
+    <td class="num mono">0.00%</td>
+    <td class="num mono strong">8.7%</td>
+    <td class="small">引擎在第 4 代自行合成：依次执行 追加修正项 → 外包生长。</td>
+  </tr><tr>
+    <td><strong>子树替换→精英杂交</strong> <span class="pill acc">第 2 代合成</span></td>
+    <td class="num mono">2,949</td>
+    <td class="num mono">0</td>
+    <td class="num mono">0.00%</td>
+    <td class="num mono strong">8.6%</td>
+    <td class="small">引擎在第 2 代自行合成：依次执行 子树替换 → 精英杂交。</td>
+  </tr></tbody>
+</table>
+  <h3>还在自适应的其它东西</h3>
+  <table class="tbl">
+    <thead><tr><th>参数</th><th class="num">当前值</th><th>调节规则</th></tr></thead>
+    <tbody>
+      <tr><td><strong>常数退火步长 σ</strong></td><td class="num mono strong">0.2952</td>
+        <td class="small">找到新冠军就 ×0.9（在附近精修），一晚没找到就 ×1.35（放大重来）。范围 0.05 – 2。<br>
+        <span class="dim">最早的版本是拿命中率和一个固定的 2% 阈值比 —— 听起来合理，实际完全反了：精英档案一旦填满，健康的搜索命中率也远低于 0.1%，于是 σ 每晚都在收缩，搜索恰好在最该放大的时候冷下去，卡在同一个冠军上五代没人发现。现在这条规则只认一个信号：昨晚有没有产出新冠军。</span></td></tr>
+      <tr><td><strong>连续无进展</strong></td><td class="num mono strong">1 晚</td>
+        <td class="small">连续两晚没有产出新冠军就进入重加热状态：随机重启 + 更高的算子串联概率。</td></tr>
+      <tr><td><strong>每晚评估预算</strong></td><td class="num mono strong">12,247</td>
+        <td class="small">一晚没找到东西，下一晚预算 ×1.4；找到了就 ×0.9。范围 6,000 – 60,000。搜不出结果时先加算力，而不是先放宽验收标准。</td></tr>
+      <tr><td><strong>合成算子</strong></td><td class="num mono strong">3 / 4</td>
+        <td class="small">串联两个算子的命中率若超过任何单一算子 25%，就把这对组合固化成一个有名字的新算子。搜索空间真的变大了，但新算子的每个零件都是审过的。</td></tr>
+      <tr><td><strong>表达式规模上限</strong></td><td class="num mono strong">64 节点 / 深度 14</td>
+        <td class="small">硬上限，引擎不能改。没有这条，遗传编程会稳定地长成一坨没人读得懂的东西。</td></tr>
+    </tbody>
+  </table>
+</section>
 
 <section id="lineage">
   <h2><span class="idx mono">08</span>世代谱系</h2>
@@ -603,7 +762,21 @@ footer .note{margin-top:10px}
     <th class="num">被否决</th><th class="num">节点</th>
     <th>产出算子</th><th class="num">σ</th><th class="num">耗时</th><th class="num">种子</th>
   </tr></thead>
-  <tbody><tr class="acc">
+  <tbody><tr class="hold">
+    <td class="num mono">4</td>
+    <td class="mono small">2026-09-17 <span class="pill">genesis</span></td>
+    <td class="num mono">8,748</td>
+    <td><span class="tag no">维持</span></td>
+    <td class="num mono">3.117%</td>
+    <td class="num mono dim">4.046%</td>
+    <td class="num mono dim">4.098%</td>
+    <td class="num mono dim">0</td>
+    <td class="num mono dim">35</td>
+    <td class="small"><span class="dim">—</span></td>
+    <td class="num mono dim">0.2952</td>
+    <td class="num mono dim">13.6s</td>
+    <td class="num mono dim">2728536930</td>
+  </tr><tr class="acc">
     <td class="num mono">3</td>
     <td class="mono small">2026-09-17 <span class="pill">genesis</span></td>
     <td class="num mono">9,720</td>
@@ -660,6 +833,11 @@ footer .note{margin-top:10px}
   <h2><span class="idx mono">09</span>实验日志</h2>
   <p>每晚一条，由当次运行的遥测数据生成，包括失败的夜晚和泛化变差的夜晚。</p>
   
+  <article class="logentry hold">
+    <header><span class="mono gen">第 4 代</span><span class="mono date">2026-09-17</span>
+      <span class="logtitle">无改进 — 维持 3.117%</span></header>
+    <p>本轮评估 8,748 个候选，冠军一个都没被推翻。精英档案里有 3 个格子被刷新 — 主干没动，侧枝在长。</p><p>下一轮预算自动上调到 12,247 次评估。搜索不出结果时，先加算力，而不是先放宽验收标准。</p><p>引擎自行合成了一个新算子「追加修正项→外包生长」：这对组合在 142 次串联试验中的命中率是 0.70%，高于任何单一算子的 0.07%。算子集合从此多了一行。</p><p>没找到东西就放大搜索：退火步长 σ 0.219 → 0.295。连续第 1 晚无进展。</p>
+  </article>
   <article class="logentry acc">
     <header><span class="mono gen">第 3 代</span><span class="mono date">2026-09-17</span>
       <span class="logtitle">接受 — 训练集 3.117%</span></header>
@@ -758,8 +936,8 @@ open index.html</code></pre>
 
 <footer>
   <div class="fgrid">
-    <div><span class="fk">第 3 代</span><span class="fv mono">2026-09-17</span></div>
-    <div><span class="fk">上次运行种子</span><span class="fv mono">2644648835</span></div>
+    <div><span class="fk">第 4 代</span><span class="fv mono">2026-09-17</span></div>
+    <div><span class="fk">上次运行种子</span><span class="fv mono">2728536930</span></div>
     <div><span class="fk">实例集指纹</span><span class="fv mono">af6d6118</span></div>
     <div><span class="fk">诞生于</span><span class="fv mono">2026-09-17</span></div>
   </div>
