@@ -1,1 +1,33 @@
-[]
+[
+  {
+    "gen": 1,
+    "date": "2026-09-17",
+    "seed": 2678204073,
+    "label": "genesis",
+    "evaluations": 12000,
+    "proposed": 18722,
+    "accepted": true,
+    "op": "subtree",
+    "opLabel": "子树替换",
+    "trainBefore": 4.1247,
+    "trainAfter": 3.6027,
+    "valAfter": 4.1722,
+    "testBefore": 4.4933,
+    "testAfter": 4.3951,
+    "vetoed": 1597,
+    "contenders": 1606,
+    "size": 15,
+    "sigma": 0.27,
+    "budget": 10800,
+    "hitRate": 0.00369,
+    "cellHits": 62,
+    "elapsedMs": 15871,
+    "minted": null,
+    "milestones": [
+      "beat-firstfit",
+      "beat-bestfit",
+      "gain-025",
+      "gain-050"
+    ]
+  }
+]
