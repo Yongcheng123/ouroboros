@@ -29,5 +29,31 @@
       "gain-025",
       "gain-050"
     ]
+  },
+  {
+    "gen": 2,
+    "date": "2026-09-17",
+    "seed": 2627871216,
+    "label": "genesis",
+    "evaluations": 10800,
+    "proposed": 16783,
+    "accepted": true,
+    "op": "crossover+addterm",
+    "opLabel": "精英杂交→追加修正项",
+    "trainBefore": 3.6027,
+    "trainAfter": 3.1792,
+    "valAfter": 4.0465,
+    "testBefore": 4.3951,
+    "testAfter": 4.1218,
+    "vetoed": 55,
+    "contenders": 62,
+    "size": 35,
+    "sigma": 0.243,
+    "budget": 9720,
+    "hitRate": 0.00119,
+    "cellHits": 20,
+    "elapsedMs": 15484,
+    "minted": "x_subtree_crossover",
+    "milestones": []
   }
 ]

@@ -8,69 +8,138 @@
     "repo": "https://github.com/Yongcheng123/ouroboros",
     "site": "https://yongcheng123.github.io/ouroboros/"
   },
-  "generation": 1,
+  "generation": 2,
   "suiteFingerprint": "af6d6118",
   "champion": {
     "expr": [
-      "mul",
+      "add",
       [
-        "min",
+        "max",
         [
-          "c",
-          2.202808
-        ],
-        [
-          "log",
+          "add",
           [
-            "v",
-            "r"
-          ]
-        ]
-      ],
-      [
-        "mul",
-        [
-          "neg",
-          [
-            "min",
+            "mul",
             [
-              "v",
-              "g"
-            ],
-            [
-              "sq",
+              "mul",
               [
-                "max",
+                "min",
+                [
+                  "c",
+                  2.202808
+                ],
+                [
+                  "log",
+                  [
+                    "sub",
+                    [
+                      "c",
+                      0
+                    ],
+                    [
+                      "v",
+                      "r"
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "sqrt",
                 [
                   "v",
-                  "i"
-                ],
+                  "r"
+                ]
+              ]
+            ],
+            [
+              "mul",
+              [
+                "neg",
+                [
+                  "min",
+                  [
+                    "v",
+                    "g"
+                  ],
+                  [
+                    "sq",
+                    [
+                      "max",
+                      [
+                        "v",
+                        "i"
+                      ],
+                      [
+                        "v",
+                        "g"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "log",
                 [
                   "v",
                   "g"
                 ]
               ]
             ]
+          ],
+          [
+            "mul",
+            [
+              "c",
+              -0.00172
+            ],
+            [
+              "v",
+              "r"
+            ]
           ]
         ],
         [
-          "log",
+          "mul",
+          [
+            "log",
+            [
+              "v",
+              "r"
+            ]
+          ],
+          [
+            "v",
+            "k"
+          ]
+        ]
+      ],
+      [
+        "mul",
+        [
+          "c",
+          -1.205606
+        ],
+        [
+          "max",
           [
             "v",
             "g"
+          ],
+          [
+            "c",
+            0.5
           ]
         ]
       ]
     ],
-    "size": 15,
-    "depth": 7,
+    "size": 35,
+    "depth": 10,
     "train": {
-      "excess": 3.6027,
+      "excess": 3.1792,
       "perFamily": {
-        "weibull": 4.2289,
-        "uniform": 3.9224,
-        "triplet": 5.488,
-        "bimodal": 0.7715
+        "weibull": 3.9801,
+        "uniform": 3.1906,
+        "triplet": 5.1813,
+        "bimodal": 0.365
       },
       "perInstance": [
         {
@@ -81,21 +150,21 @@
         },
         {
           "id": "weibull-t2",
-          "bins": 210,
-          "lowerBound": 201,
-          "excess": 4.4776
-        },
-        {
-          "id": "uniform-t1",
-          "bins": 215,
-          "lowerBound": 207,
-          "excess": 3.8647
-        },
-        {
-          "id": "uniform-t2",
           "bins": 209,
           "lowerBound": 201,
           "excess": 3.9801
+        },
+        {
+          "id": "uniform-t1",
+          "bins": 213,
+          "lowerBound": 207,
+          "excess": 2.8986
+        },
+        {
+          "id": "uniform-t2",
+          "bins": 208,
+          "lowerBound": 201,
+          "excess": 3.4826
         },
         {
           "id": "triplet-t1",
@@ -105,15 +174,15 @@
         },
         {
           "id": "triplet-t2",
-          "bins": 172,
+          "bins": 171,
           "lowerBound": 163,
-          "excess": 5.5215
+          "excess": 4.908
         },
         {
           "id": "bimodal-t1",
-          "bins": 124,
+          "bins": 123,
           "lowerBound": 123,
-          "excess": 0.813
+          "excess": 0
         },
         {
           "id": "bimodal-t2",
@@ -124,9 +193,9 @@
       ]
     },
     "val": {
-      "excess": 4.1722,
+      "excess": 4.0465,
       "perFamily": {
-        "weibull": 5.5276,
+        "weibull": 5.0251,
         "uniform": 3.5176,
         "triplet": 6.1728,
         "bimodal": 1.4706
@@ -134,9 +203,9 @@
       "perInstance": [
         {
           "id": "weibull-g1",
-          "bins": 210,
+          "bins": 209,
           "lowerBound": 199,
-          "excess": 5.5276
+          "excess": 5.0251
         },
         {
           "id": "uniform-g1",
@@ -159,12 +228,12 @@
       ]
     },
     "test": {
-      "excess": 4.3951,
+      "excess": 4.1218,
       "perFamily": {
-        "weibull": 4.9398,
-        "uniform": 4.6954,
+        "weibull": 4.7731,
+        "uniform": 4.0276,
         "triplet": 5.7249,
-        "bimodal": 2.2201
+        "bimodal": 1.9617
       },
       "perInstance": [
         {
@@ -181,27 +250,27 @@
         },
         {
           "id": "weibull-v3",
-          "bins": 211,
+          "bins": 210,
           "lowerBound": 200,
-          "excess": 5.5
+          "excess": 5
         },
         {
           "id": "uniform-v1",
-          "bins": 214,
+          "bins": 212,
           "lowerBound": 203,
-          "excess": 5.4187
+          "excess": 4.4335
         },
         {
           "id": "uniform-v2",
-          "bins": 209,
+          "bins": 208,
           "lowerBound": 201,
-          "excess": 3.9801
+          "excess": 3.4826
         },
         {
           "id": "uniform-v3",
-          "bins": 201,
+          "bins": 200,
           "lowerBound": 192,
-          "excess": 4.6875
+          "excess": 4.1667
         },
         {
           "id": "triplet-v1",
@@ -223,9 +292,9 @@
         },
         {
           "id": "bimodal-v1",
-          "bins": 132,
+          "bins": 131,
           "lowerBound": 129,
-          "excess": 2.3256
+          "excess": 1.5504
         },
         {
           "id": "bimodal-v2",
@@ -241,8 +310,8 @@
         }
       ]
     },
-    "bornGen": 1,
-    "bornOp": "subtree",
+    "bornGen": 2,
+    "bornOp": "crossover+addterm",
     "bornDate": "2026-09-17",
     "source": "gp"
   },
@@ -344,513 +413,25 @@
       "lo": 11,
       "hi": 15,
       "expr": [
-        "add",
-        [
-          "mul",
-          [
-            "min",
-            [
-              "c",
-              2.848841
-            ],
-            [
-              "log",
-              [
-                "v",
-                "r"
-              ]
-            ]
-          ],
-          [
-            "mul",
-            [
-              "neg",
-              [
-                "min",
-                [
-                  "v",
-                  "g"
-                ],
-                [
-                  "c",
-                  0.109063
-                ]
-              ]
-            ],
-            [
-              "log",
-              [
-                "v",
-                "g"
-              ]
-            ]
-          ]
-        ],
-        [
-          "c",
-          -10.989244
-        ]
-      ],
-      "train": 3.5069,
-      "size": 14,
-      "bornGen": 1,
-      "bornOp": "simplify",
-      "test": 5.0994
-    },
-    {
-      "id": "16-22",
-      "lo": 16,
-      "hi": 22,
-      "expr": [
-        "add",
-        [
-          "mul",
-          [
-            "min",
-            [
-              "inv",
-              [
-                "c",
-                0.35102
-              ]
-            ],
-            [
-              "log",
-              [
-                "v",
-                "r"
-              ]
-            ]
-          ],
-          [
-            "mul",
-            [
-              "neg",
-              [
-                "min",
-                [
-                  "v",
-                  "g"
-                ],
-                [
-                  "c",
-                  0.109063
-                ]
-              ]
-            ],
-            [
-              "log",
-              [
-                "v",
-                "g"
-              ]
-            ]
-          ]
-        ],
-        [
-          "mul",
-          [
-            "c",
-            0.99901
-          ],
-          [
-            "c",
-            -11.000134
-          ]
-        ]
-      ],
-      "train": 3.5069,
-      "size": 17,
-      "bornGen": 1,
-      "bornOp": "jitter",
-      "test": 5.0994
-    },
-    {
-      "id": "23-32",
-      "lo": 23,
-      "hi": 32,
-      "expr": [
-        "add",
-        [
-          "add",
-          [
-            "mul",
-            [
-              "min",
-              [
-                "inv",
-                [
-                  "c",
-                  0.35102
-                ]
-              ],
-              [
-                "log",
-                [
-                  "v",
-                  "r"
-                ]
-              ]
-            ],
-            [
-              "mul",
-              [
-                "neg",
-                [
-                  "min",
-                  [
-                    "v",
-                    "g"
-                  ],
-                  [
-                    "c",
-                    0.109063
-                  ]
-                ]
-              ],
-              [
-                "log",
-                [
-                  "v",
-                  "g"
-                ]
-              ]
-            ]
-          ],
-          [
-            "mul",
-            [
-              "c",
-              0.99901
-            ],
-            [
-              "c",
-              -11.000134
-            ]
-          ]
-        ],
-        [
-          "mul",
-          [
-            "c",
-            -0.189095
-          ],
-          [
-            "min",
-            [
-              "c",
-              1
-            ],
-            [
-              "c",
-              -1.442457
-            ]
-          ]
-        ]
-      ],
-      "train": 3.5069,
-      "size": 23,
-      "bornGen": 1,
-      "bornOp": "addterm",
-      "test": 5.0994
-    },
-    {
-      "id": "33-48",
-      "lo": 33,
-      "hi": 48,
-      "expr": [
-        "add",
-        [
-          "add",
-          [
-            "mul",
-            [
-              "min",
-              [
-                "inv",
-                [
-                  "c",
-                  0.35102
-                ]
-              ],
-              [
-                "log",
-                [
-                  "v",
-                  "r"
-                ]
-              ]
-            ],
-            [
-              "mul",
-              [
-                "neg",
-                [
-                  "min",
-                  [
-                    "v",
-                    "g"
-                  ],
-                  [
-                    "c",
-                    0.109063
-                  ]
-                ]
-              ],
-              [
-                "log",
-                [
-                  "v",
-                  "g"
-                ]
-              ]
-            ]
-          ],
-          [
-            "mul",
-            [
-              "c",
-              0.99901
-            ],
-            [
-              "c",
-              -11.000134
-            ]
-          ]
-        ],
-        [
-          "mul",
-          [
-            "c",
-            -0.189095
-          ],
-          [
-            "min",
-            [
-              "add",
-              [
-                "mul",
-                [
-                  "min",
-                  [
-                    "inv",
-                    [
-                      "c",
-                      0.35102
-                    ]
-                  ],
-                  [
-                    "log",
-                    [
-                      "v",
-                      "r"
-                    ]
-                  ]
-                ],
-                [
-                  "mul",
-                  [
-                    "neg",
-                    [
-                      "min",
-                      [
-                        "v",
-                        "g"
-                      ],
-                      [
-                        "c",
-                        0.109063
-                      ]
-                    ]
-                  ],
-                  [
-                    "log",
-                    [
-                      "v",
-                      "r"
-                    ]
-                  ]
-                ]
-              ],
-              [
-                "mul",
-                [
-                  "c",
-                  0.99901
-                ],
-                [
-                  "c",
-                  -11.000134
-                ]
-              ]
-            ],
-            [
-              "c",
-              -1.442457
-            ]
-          ]
-        ]
-      ],
-      "train": 3.4465,
-      "size": 39,
-      "bornGen": 1,
-      "bornOp": "point",
-      "test": 5.1798
-    },
-    {
-      "id": "49-64",
-      "lo": 49,
-      "hi": 64,
-      "expr": [
         "mul",
         [
-          "min",
-          [
-            "add",
-            [
-              "add",
-              [
-                "add",
-                [
-                  "neg",
-                  [
-                    "min",
-                    [
-                      "v",
-                      "g"
-                    ],
-                    [
-                      "c",
-                      -0.103075
-                    ]
-                  ]
-                ],
-                [
-                  "mul",
-                  [
-                    "c",
-                    0.451239
-                  ],
-                  [
-                    "mul",
-                    [
-                      "min",
-                      [
-                        "c",
-                        -0.554224
-                      ],
-                      [
-                        "v",
-                        "g"
-                      ]
-                    ],
-                    [
-                      "mul",
-                      [
-                        "neg",
-                        [
-                          "min",
-                          [
-                            "v",
-                            "g"
-                          ],
-                          [
-                            "c",
-                            0.255709
-                          ]
-                        ]
-                      ],
-                      [
-                        "sq",
-                        [
-                          "v",
-                          "g"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ],
-              [
-                "mul",
-                [
-                  "c",
-                  0.538178
-                ],
-                [
-                  "mul",
-                  [
-                    "min",
-                    [
-                      "c",
-                      -1.910324
-                    ],
-                    [
-                      "v",
-                      "g"
-                    ]
-                  ],
-                  [
-                    "mul",
-                    [
-                      "neg",
-                      [
-                        "min",
-                        [
-                          "v",
-                          "g"
-                        ],
-                        [
-                          "c",
-                          0.039899
-                        ]
-                      ]
-                    ],
-                    [
-                      "log",
-                      [
-                        "v",
-                        "g"
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ],
-            [
-              "mul",
-              [
-                "c",
-                -1.394863
-              ],
-              [
-                "div",
-                [
-                  "mul",
-                  [
-                    "c",
-                    -0.824584
-                  ],
-                  [
-                    "sqrt",
-                    [
-                      "v",
-                      "k"
-                    ]
-                  ]
-                ],
-                [
-                  "c",
-                  -8.183936
-                ]
-              ]
-            ]
-          ],
+          "add",
           [
             "log",
             [
               "v",
               "r"
+            ]
+          ],
+          [
+            "mul",
+            [
+              "v",
+              "g"
+            ],
+            [
+              "v",
+              "g"
             ]
           ]
         ],
@@ -879,11 +460,570 @@
           ]
         ]
       ],
-      "train": 3.5087,
-      "size": 52,
-      "bornGen": 1,
-      "bornOp": "crossover",
-      "test": 5.1387
+      "train": 3.4796,
+      "size": 14,
+      "bornGen": 2,
+      "bornOp": "grow",
+      "test": 5.2778
+    },
+    {
+      "id": "16-22",
+      "lo": 16,
+      "hi": 22,
+      "expr": [
+        "add",
+        [
+          "mul",
+          [
+            "mul",
+            [
+              "min",
+              [
+                "c",
+                2.202808
+              ],
+              [
+                "log",
+                [
+                  "v",
+                  "r"
+                ]
+              ]
+            ],
+            [
+              "sqrt",
+              [
+                "v",
+                "r"
+              ]
+            ]
+          ],
+          [
+            "mul",
+            [
+              "neg",
+              [
+                "min",
+                [
+                  "v",
+                  "g"
+                ],
+                [
+                  "sq",
+                  [
+                    "max",
+                    [
+                      "v",
+                      "i"
+                    ],
+                    [
+                      "v",
+                      "g"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "log",
+              [
+                "v",
+                "g"
+              ]
+            ]
+          ]
+        ],
+        [
+          "mul",
+          [
+            "c",
+            -0.00172
+          ],
+          [
+            "v",
+            "r"
+          ]
+        ]
+      ],
+      "train": 3.343,
+      "size": 22,
+      "bornGen": 2,
+      "bornOp": "addterm",
+      "test": 4.1218
+    },
+    {
+      "id": "23-32",
+      "lo": 23,
+      "hi": 32,
+      "expr": [
+        "add",
+        [
+          "max",
+          [
+            "mul",
+            [
+              "mul",
+              [
+                "min",
+                [
+                  "c",
+                  2.202808
+                ],
+                [
+                  "log",
+                  [
+                    "sub",
+                    [
+                      "c",
+                      0
+                    ],
+                    [
+                      "v",
+                      "r"
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "sqrt",
+                [
+                  "v",
+                  "r"
+                ]
+              ]
+            ],
+            [
+              "mul",
+              [
+                "neg",
+                [
+                  "min",
+                  [
+                    "v",
+                    "g"
+                  ],
+                  [
+                    "sq",
+                    [
+                      "max",
+                      [
+                        "v",
+                        "i"
+                      ],
+                      [
+                        "v",
+                        "g"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "log",
+                [
+                  "v",
+                  "g"
+                ]
+              ]
+            ]
+          ],
+          [
+            "mul",
+            [
+              "log",
+              [
+                "v",
+                "r"
+              ]
+            ],
+            [
+              "v",
+              "k"
+            ]
+          ]
+        ],
+        [
+          "mul",
+          [
+            "c",
+            -1.205606
+          ],
+          [
+            "max",
+            [
+              "v",
+              "g"
+            ],
+            [
+              "c",
+              0.5
+            ]
+          ]
+        ]
+      ],
+      "train": 3.2396,
+      "size": 31,
+      "bornGen": 2,
+      "bornOp": "prune",
+      "test": 4.1218
+    },
+    {
+      "id": "33-48",
+      "lo": 33,
+      "hi": 48,
+      "expr": [
+        "add",
+        [
+          "max",
+          [
+            "add",
+            [
+              "mul",
+              [
+                "mul",
+                [
+                  "min",
+                  [
+                    "c",
+                    2.202808
+                  ],
+                  [
+                    "log",
+                    [
+                      "sub",
+                      [
+                        "c",
+                        0
+                      ],
+                      [
+                        "v",
+                        "r"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "sqrt",
+                  [
+                    "v",
+                    "r"
+                  ]
+                ]
+              ],
+              [
+                "mul",
+                [
+                  "neg",
+                  [
+                    "min",
+                    [
+                      "v",
+                      "g"
+                    ],
+                    [
+                      "sq",
+                      [
+                        "max",
+                        [
+                          "v",
+                          "i"
+                        ],
+                        [
+                          "v",
+                          "g"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "log",
+                  [
+                    "v",
+                    "g"
+                  ]
+                ]
+              ]
+            ],
+            [
+              "mul",
+              [
+                "c",
+                -0.00172
+              ],
+              [
+                "v",
+                "r"
+              ]
+            ]
+          ],
+          [
+            "mul",
+            [
+              "log",
+              [
+                "v",
+                "r"
+              ]
+            ],
+            [
+              "v",
+              "k"
+            ]
+          ]
+        ],
+        [
+          "mul",
+          [
+            "c",
+            -1.205606
+          ],
+          [
+            "max",
+            [
+              "v",
+              "g"
+            ],
+            [
+              "c",
+              0.5
+            ]
+          ]
+        ]
+      ],
+      "train": 3.1792,
+      "size": 35,
+      "bornGen": 2,
+      "bornOp": "crossover+addterm",
+      "test": 4.1218
+    },
+    {
+      "id": "49-64",
+      "lo": 49,
+      "hi": 64,
+      "expr": [
+        "add",
+        [
+          "max",
+          [
+            "mul",
+            [
+              "mul",
+              [
+                "min",
+                [
+                  "c",
+                  2.202808
+                ],
+                [
+                  "log",
+                  [
+                    "sub",
+                    [
+                      "c",
+                      0
+                    ],
+                    [
+                      "v",
+                      "r"
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "sqrt",
+                [
+                  "v",
+                  "r"
+                ]
+              ]
+            ],
+            [
+              "mul",
+              [
+                "neg",
+                [
+                  "min",
+                  [
+                    "v",
+                    "g"
+                  ],
+                  [
+                    "sq",
+                    [
+                      "max",
+                      [
+                        "v",
+                        "i"
+                      ],
+                      [
+                        "v",
+                        "g"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "log",
+                [
+                  "v",
+                  "g"
+                ]
+              ]
+            ]
+          ],
+          [
+            "mul",
+            [
+              "log",
+              [
+                "add",
+                [
+                  "max",
+                  [
+                    "mul",
+                    [
+                      "mul",
+                      [
+                        "min",
+                        [
+                          "c",
+                          2.202808
+                        ],
+                        [
+                          "log",
+                          [
+                            "sub",
+                            [
+                              "c",
+                              0
+                            ],
+                            [
+                              "v",
+                              "r"
+                            ]
+                          ]
+                        ]
+                      ],
+                      [
+                        "sqrt",
+                        [
+                          "v",
+                          "r"
+                        ]
+                      ]
+                    ],
+                    [
+                      "mul",
+                      [
+                        "neg",
+                        [
+                          "min",
+                          [
+                            "v",
+                            "g"
+                          ],
+                          [
+                            "sq",
+                            [
+                              "max",
+                              [
+                                "v",
+                                "i"
+                              ],
+                              [
+                                "v",
+                                "g"
+                              ]
+                            ]
+                          ]
+                        ]
+                      ],
+                      [
+                        "log",
+                        [
+                          "v",
+                          "g"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "mul",
+                    [
+                      "div",
+                      [
+                        "neg",
+                        [
+                          "v",
+                          "g"
+                        ]
+                      ],
+                      [
+                        "log",
+                        [
+                          "v",
+                          "r"
+                        ]
+                      ]
+                    ],
+                    [
+                      "v",
+                      "k"
+                    ]
+                  ]
+                ],
+                [
+                  "mul",
+                  [
+                    "c",
+                    -1.205606
+                  ],
+                  [
+                    "max",
+                    [
+                      "v",
+                      "g"
+                    ],
+                    [
+                      "c",
+                      0.5
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "v",
+              "k"
+            ]
+          ]
+        ],
+        [
+          "mul",
+          [
+            "c",
+            -1.205606
+          ],
+          [
+            "max",
+            [
+              "v",
+              "g"
+            ],
+            [
+              "c",
+              0.5
+            ]
+          ]
+        ]
+      ],
+      "train": 3.1774,
+      "size": 64,
+      "bornGen": 2,
+      "bornOp": "grow",
+      "test": 4.1218
     }
   ],
   "search": {
@@ -892,9 +1032,9 @@
         "id": "point",
         "kind": "base",
         "born": 0,
-        "q": 0.824631,
-        "weight": 0.124618,
-        "attempts": 2332,
+        "q": 0.554482,
+        "weight": 0.1109,
+        "attempts": 4457,
         "hits": 5,
         "bestGain": 0
       },
@@ -902,305 +1042,319 @@
         "id": "subtree",
         "kind": "base",
         "born": 0,
-        "q": 0.826305,
-        "weight": 0.12481,
-        "attempts": 2398,
-        "hits": 7,
+        "q": 0.559404,
+        "weight": 0.111618,
+        "attempts": 4469,
+        "hits": 9,
         "bestGain": 0.522
       },
       {
         "id": "grow",
         "kind": "base",
         "born": 0,
-        "q": 0.826448,
-        "weight": 0.124827,
-        "attempts": 2345,
-        "hits": 7,
+        "q": 0.565473,
+        "weight": 0.112504,
+        "attempts": 4357,
+        "hits": 12,
         "bestGain": 0
       },
       {
         "id": "prune",
         "kind": "base",
         "born": 0,
-        "q": 0.828329,
-        "weight": 0.125043,
-        "attempts": 2334,
-        "hits": 9,
+        "q": 0.56067,
+        "weight": 0.111803,
+        "attempts": 4458,
+        "hits": 11,
         "bestGain": 0
       },
       {
         "id": "jitter",
         "kind": "base",
         "born": 0,
-        "q": 0.826623,
-        "weight": 0.124847,
-        "attempts": 2283,
-        "hits": 7,
+        "q": 0.559647,
+        "weight": 0.111654,
+        "attempts": 4338,
+        "hits": 9,
         "bestGain": 0
       },
       {
         "id": "crossover",
         "kind": "base",
         "born": 0,
-        "q": 0.828948,
-        "weight": 0.125114,
-        "attempts": 2414,
-        "hits": 10,
+        "q": 0.561067,
+        "weight": 0.111861,
+        "attempts": 4549,
+        "hits": 12,
         "bestGain": 0
       },
       {
         "id": "addterm",
         "kind": "base",
         "born": 0,
-        "q": 0.836715,
-        "weight": 0.126005,
-        "attempts": 2326,
-        "hits": 18,
+        "q": 0.575749,
+        "weight": 0.114003,
+        "attempts": 4420,
+        "hits": 25,
         "bestGain": 0
       },
       {
         "id": "simplify",
         "kind": "base",
         "born": 0,
-        "q": 0.825659,
-        "weight": 0.124736,
-        "attempts": 2290,
+        "q": 0.555173,
+        "weight": 0.111001,
+        "attempts": 4457,
         "hits": 6,
+        "bestGain": 0
+      },
+      {
+        "id": "x_subtree_crossover",
+        "kind": "composite",
+        "parts": [
+          "subtree",
+          "crossover"
+        ],
+        "born": 2,
+        "q": 0.511675,
+        "weight": 0.104655,
+        "attempts": 0,
+        "hits": 0,
         "bestGain": 0
       }
     ],
     "pairs": {
       "prune|jitter": {
-        "attempts": 32,
+        "attempts": 57,
         "hits": 0
       },
       "grow|subtree": {
-        "attempts": 40,
+        "attempts": 71,
         "hits": 0
       },
       "crossover|point": {
-        "attempts": 40,
+        "attempts": 86,
         "hits": 0
       },
       "subtree|crossover": {
-        "attempts": 43,
-        "hits": 0
+        "attempts": 79,
+        "hits": 1
       },
       "grow|simplify": {
-        "attempts": 49,
+        "attempts": 79,
         "hits": 0
       },
       "addterm|simplify": {
-        "attempts": 42,
+        "attempts": 89,
         "hits": 0
       },
       "grow|prune": {
-        "attempts": 27,
+        "attempts": 57,
         "hits": 0
       },
       "prune|point": {
-        "attempts": 42,
+        "attempts": 80,
         "hits": 0
       },
       "grow|point": {
-        "attempts": 41,
+        "attempts": 81,
         "hits": 0
       },
       "subtree|addterm": {
-        "attempts": 46,
+        "attempts": 82,
         "hits": 0
       },
       "crossover|jitter": {
-        "attempts": 45,
+        "attempts": 81,
         "hits": 0
       },
       "crossover|subtree": {
-        "attempts": 47,
+        "attempts": 86,
         "hits": 0
       },
       "jitter|addterm": {
-        "attempts": 45,
+        "attempts": 88,
         "hits": 0
       },
       "point|jitter": {
-        "attempts": 45,
+        "attempts": 77,
         "hits": 0
       },
       "prune|simplify": {
-        "attempts": 41,
+        "attempts": 76,
         "hits": 1
       },
       "addterm|grow": {
-        "attempts": 48,
+        "attempts": 91,
         "hits": 1
       },
       "prune|crossover": {
-        "attempts": 40,
+        "attempts": 69,
         "hits": 0
       },
       "addterm|prune": {
-        "attempts": 24,
+        "attempts": 50,
         "hits": 0
       },
       "point|prune": {
-        "attempts": 36,
+        "attempts": 74,
         "hits": 0
       },
       "prune|grow": {
-        "attempts": 49,
+        "attempts": 86,
         "hits": 0
       },
       "subtree|jitter": {
-        "attempts": 35,
+        "attempts": 76,
         "hits": 0
       },
       "crossover|addterm": {
-        "attempts": 45,
-        "hits": 0
+        "attempts": 89,
+        "hits": 1
       },
       "point|subtree": {
-        "attempts": 44,
+        "attempts": 87,
         "hits": 0
       },
       "addterm|crossover": {
-        "attempts": 44,
+        "attempts": 86,
         "hits": 0
       },
       "simplify|addterm": {
-        "attempts": 37,
+        "attempts": 73,
         "hits": 1
       },
       "subtree|prune": {
-        "attempts": 37,
+        "attempts": 70,
         "hits": 0
       },
       "jitter|point": {
-        "attempts": 35,
+        "attempts": 77,
         "hits": 0
       },
       "point|crossover": {
-        "attempts": 48,
+        "attempts": 86,
         "hits": 0
       },
       "simplify|crossover": {
-        "attempts": 42,
+        "attempts": 75,
         "hits": 1
       },
       "prune|addterm": {
-        "attempts": 41,
+        "attempts": 78,
         "hits": 0
       },
       "jitter|subtree": {
-        "attempts": 40,
+        "attempts": 79,
         "hits": 0
       },
       "addterm|point": {
-        "attempts": 37,
+        "attempts": 81,
         "hits": 1
       },
       "jitter|grow": {
-        "attempts": 39,
+        "attempts": 83,
         "hits": 0
       },
       "jitter|prune": {
-        "attempts": 46,
+        "attempts": 78,
         "hits": 0
       },
       "grow|jitter": {
-        "attempts": 37,
+        "attempts": 69,
         "hits": 0
       },
       "simplify|grow": {
-        "attempts": 27,
+        "attempts": 68,
         "hits": 0
       },
       "subtree|simplify": {
-        "attempts": 39,
+        "attempts": 66,
         "hits": 0
       },
       "addterm|subtree": {
-        "attempts": 35,
-        "hits": 0
+        "attempts": 77,
+        "hits": 1
       },
       "point|addterm": {
-        "attempts": 32,
+        "attempts": 69,
         "hits": 0
       },
       "crossover|grow": {
-        "attempts": 34,
+        "attempts": 67,
         "hits": 0
       },
       "point|simplify": {
-        "attempts": 37,
+        "attempts": 81,
         "hits": 0
       },
       "subtree|grow": {
-        "attempts": 43,
+        "attempts": 79,
         "hits": 0
       },
       "jitter|crossover": {
-        "attempts": 42,
+        "attempts": 70,
         "hits": 0
       },
       "simplify|prune": {
-        "attempts": 51,
+        "attempts": 94,
         "hits": 1
       },
       "prune|subtree": {
-        "attempts": 36,
+        "attempts": 69,
         "hits": 0
       },
       "crossover|simplify": {
-        "attempts": 54,
+        "attempts": 86,
         "hits": 0
       },
       "simplify|jitter": {
-        "attempts": 38,
+        "attempts": 82,
         "hits": 0
       },
       "addterm|jitter": {
-        "attempts": 39,
+        "attempts": 63,
         "hits": 0
       },
       "grow|addterm": {
-        "attempts": 35,
+        "attempts": 75,
         "hits": 0
       },
       "grow|crossover": {
-        "attempts": 36,
+        "attempts": 75,
         "hits": 0
       },
       "crossover|prune": {
-        "attempts": 37,
+        "attempts": 79,
         "hits": 0
       },
       "simplify|subtree": {
-        "attempts": 42,
+        "attempts": 80,
         "hits": 0
       },
       "subtree|point": {
-        "attempts": 35,
+        "attempts": 71,
         "hits": 0
       },
       "jitter|simplify": {
-        "attempts": 30,
+        "attempts": 57,
         "hits": 0
       },
       "simplify|point": {
-        "attempts": 32,
+        "attempts": 79,
         "hits": 0
       },
       "point|grow": {
-        "attempts": 31,
+        "attempts": 70,
         "hits": 0
       }
     },
-    "composites": 0,
-    "sigma": 0.27,
+    "composites": 1,
+    "sigma": 0.243,
     "stagnation": 0,
     "acceptMargin": 0.004,
     "budget": {
-      "evaluations": 10800,
+      "evaluations": 9720,
       "min": 6000,
       "max": 60000
     },
@@ -1838,6 +1992,19 @@
   ],
   "log": [
     {
+      "gen": 2,
+      "date": "2026-09-17",
+      "accepted": true,
+      "title": "接受 — 训练集 3.179%",
+      "body": [
+        "本轮评估 10,800 个候选，接受 1 个。训练集超额率 3.603% → 3.179%（−0.424 pp），由「精英杂交→追加修正项」产出，表达式 35 个节点。",
+        "留出集同步走低 −0.273 pp — 改进在从未参与任何决定的实例上也成立。",
+        "有 55 个候选在训练折上确实更优，但被验证折否决 —— 它们在训练实例上省下的箱子，在没见过的实例上又赔了回去。这 55 次否决是这套三折划分当晚唯一的产出，也是它存在的全部理由。当晚共 62 个候选闯到这一关，89% 被挡下。",
+        "引擎自行合成了一个新算子「子树替换→精英杂交」：这对组合在 79 次串联试验中的命中率是 1.27%，高于任何单一算子的 0.33%。算子集合从此多了一行。",
+        "找到东西之后收紧搜索：退火步长 σ 0.270 → 0.243，在新冠军附近精修。"
+      ]
+    },
+    {
       "gen": 1,
       "date": "2026-09-17",
       "accepted": true,
@@ -1855,30 +2022,30 @@
     }
   ],
   "stats": {
-    "generations": 1,
-    "totalEvaluations": 12000,
-    "totalProposed": 18722,
-    "totalAccepted": 1,
+    "generations": 2,
+    "totalEvaluations": 22800,
+    "totalProposed": 35505,
+    "totalAccepted": 2,
     "totalRejected": 0,
-    "totalVetoed": 1597,
+    "totalVetoed": 1652,
     "llmProposals": 0,
     "llmAccepted": 0
   },
   "lastRun": {
     "date": "2026-09-17",
-    "generation": 1,
-    "seed": 2678204073,
-    "evaluations": 12000,
-    "proposed": 18722,
+    "generation": 2,
+    "seed": 2627871216,
+    "evaluations": 10800,
+    "proposed": 16783,
     "accepted": true,
-    "elapsedMs": 15871,
+    "elapsedMs": 15484,
     "integrity": "ok",
-    "vetoed": 1597,
-    "contenders": 1606,
-    "hitRate": 0.00369,
-    "cellHits": 62,
-    "sigma": 0.27,
-    "budget": 10800,
+    "vetoed": 55,
+    "contenders": 62,
+    "hitRate": 0.00119,
+    "cellHits": 20,
+    "sigma": 0.243,
+    "budget": 9720,
     "source": "gp",
     "label": "genesis",
     "llm": {
