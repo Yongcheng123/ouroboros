@@ -55,5 +55,33 @@
     "elapsedMs": 15484,
     "minted": "x_subtree_crossover",
     "milestones": []
+  },
+  {
+    "gen": 3,
+    "date": "2026-09-17",
+    "seed": 2644648835,
+    "label": "genesis",
+    "evaluations": 9720,
+    "proposed": 14757,
+    "accepted": true,
+    "op": "crossover",
+    "opLabel": "精英杂交",
+    "trainBefore": 3.1792,
+    "trainAfter": 3.117,
+    "valAfter": 4.0465,
+    "testBefore": 4.1218,
+    "testAfter": 4.0983,
+    "vetoed": 0,
+    "contenders": 1,
+    "size": 35,
+    "sigma": 0.2187,
+    "budget": 8748,
+    "hitRate": 0.00047,
+    "cellHits": 7,
+    "elapsedMs": 14636,
+    "minted": "x_prune_simplify",
+    "milestones": [
+      "gain-100"
+    ]
   }
 ]
