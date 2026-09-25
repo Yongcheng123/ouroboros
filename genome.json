@@ -8,7 +8,7 @@
     "repo": "https://github.com/Yongcheng123/ouroboros",
     "site": "https://yongcheng123.github.io/ouroboros/"
   },
-  "generation": 20,
+  "generation": 21,
   "suiteFingerprint": "af6d6118",
   "champion": {
     "expr": [
@@ -1029,9 +1029,9 @@
         "id": "point",
         "kind": "base",
         "born": 0,
-        "q": 0.00859,
+        "q": 0.007044,
         "weight": 0.083556,
-        "attempts": 108557,
+        "attempts": 116047,
         "hits": 5,
         "bestGain": 0
       },
@@ -1039,9 +1039,9 @@
         "id": "subtree",
         "kind": "base",
         "born": 0,
-        "q": 0.008751,
-        "weight": 0.084559,
-        "attempts": 110241,
+        "q": 0.007176,
+        "weight": 0.08456,
+        "attempts": 117868,
         "hits": 10,
         "bestGain": 0.522
       },
@@ -1049,9 +1049,9 @@
         "id": "grow",
         "kind": "base",
         "born": 0,
-        "q": 0.009029,
+        "q": 0.007404,
         "weight": 0.086293,
-        "attempts": 111262,
+        "attempts": 119081,
         "hits": 15,
         "bestGain": 0
       },
@@ -1059,9 +1059,9 @@
         "id": "prune",
         "kind": "base",
         "born": 0,
-        "q": 0.00874,
-        "weight": 0.084491,
-        "attempts": 110736,
+        "q": 0.007167,
+        "weight": 0.084492,
+        "attempts": 118445,
         "hits": 12,
         "bestGain": 0
       },
@@ -1069,9 +1069,9 @@
         "id": "jitter",
         "kind": "base",
         "born": 0,
-        "q": 0.008976,
-        "weight": 0.085962,
-        "attempts": 111332,
+        "q": 0.00736,
+        "weight": 0.085959,
+        "attempts": 119236,
         "hits": 13,
         "bestGain": 0
       },
@@ -1079,9 +1079,9 @@
         "id": "crossover",
         "kind": "base",
         "born": 0,
-        "q": 0.008952,
-        "weight": 0.085813,
-        "attempts": 111199,
+        "q": 0.007341,
+        "weight": 0.085814,
+        "attempts": 119200,
         "hits": 16,
         "bestGain": 0.0622
       },
@@ -1089,9 +1089,9 @@
         "id": "addterm",
         "kind": "base",
         "born": 0,
-        "q": 0.008919,
-        "weight": 0.085607,
-        "attempts": 110961,
+        "q": 0.007314,
+        "weight": 0.085609,
+        "attempts": 118829,
         "hits": 25,
         "bestGain": 0
       },
@@ -1099,9 +1099,9 @@
         "id": "simplify",
         "kind": "base",
         "born": 0,
-        "q": 0.008658,
-        "weight": 0.08398,
-        "attempts": 109001,
+        "q": 0.0071,
+        "weight": 0.083982,
+        "attempts": 116524,
         "hits": 7,
         "bestGain": 0
       },
@@ -1113,9 +1113,9 @@
           "crossover"
         ],
         "born": 2,
-        "q": 0.007926,
-        "weight": 0.079416,
-        "attempts": 99336,
+        "q": 0.006499,
+        "weight": 0.079413,
+        "attempts": 106619,
         "hits": 0,
         "bestGain": 0
       },
@@ -1127,9 +1127,9 @@
           "simplify"
         ],
         "born": 3,
-        "q": 0.008027,
-        "weight": 0.080046,
-        "attempts": 98669,
+        "q": 0.006582,
+        "weight": 0.080044,
+        "attempts": 106005,
         "hits": 0,
         "bestGain": 0
       },
@@ -1141,9 +1141,9 @@
           "grow"
         ],
         "born": 4,
-        "q": 0.008027,
-        "weight": 0.080046,
-        "attempts": 96817,
+        "q": 0.006582,
+        "weight": 0.080044,
+        "attempts": 104137,
         "hits": 0,
         "bestGain": 0
       },
@@ -1155,242 +1155,242 @@
           "addterm"
         ],
         "born": 5,
-        "q": 0.008057,
-        "weight": 0.080233,
-        "attempts": 95448,
+        "q": 0.006607,
+        "weight": 0.080234,
+        "attempts": 102818,
         "hits": 0,
         "bestGain": 0
       }
     ],
     "pairs": {
       "prune|jitter": {
-        "attempts": 4169,
+        "attempts": 4443,
         "hits": 0
       },
       "grow|subtree": {
-        "attempts": 4332,
+        "attempts": 4644,
         "hits": 0
       },
       "crossover|point": {
-        "attempts": 4106,
+        "attempts": 4429,
         "hits": 0
       },
       "subtree|crossover": {
-        "attempts": 4122,
+        "attempts": 4438,
         "hits": 1
       },
       "grow|simplify": {
-        "attempts": 4227,
+        "attempts": 4551,
         "hits": 0
       },
       "addterm|simplify": {
-        "attempts": 4221,
+        "attempts": 4531,
         "hits": 0
       },
       "grow|prune": {
-        "attempts": 4118,
+        "attempts": 4459,
         "hits": 0
       },
       "prune|point": {
-        "attempts": 4256,
+        "attempts": 4611,
         "hits": 0
       },
       "grow|point": {
-        "attempts": 4223,
+        "attempts": 4520,
         "hits": 0
       },
       "subtree|addterm": {
-        "attempts": 4312,
+        "attempts": 4635,
         "hits": 0
       },
       "crossover|jitter": {
-        "attempts": 4323,
+        "attempts": 4673,
         "hits": 0
       },
       "crossover|subtree": {
-        "attempts": 4341,
+        "attempts": 4661,
         "hits": 0
       },
       "jitter|addterm": {
-        "attempts": 4187,
+        "attempts": 4516,
         "hits": 0
       },
       "point|jitter": {
-        "attempts": 4151,
+        "attempts": 4478,
         "hits": 0
       },
       "prune|simplify": {
-        "attempts": 4218,
+        "attempts": 4484,
         "hits": 1
       },
       "addterm|grow": {
-        "attempts": 4174,
+        "attempts": 4472,
         "hits": 1
       },
       "prune|crossover": {
-        "attempts": 4197,
+        "attempts": 4522,
         "hits": 0
       },
       "addterm|prune": {
-        "attempts": 4217,
+        "attempts": 4537,
         "hits": 0
       },
       "point|prune": {
-        "attempts": 4024,
+        "attempts": 4354,
         "hits": 0
       },
       "prune|grow": {
-        "attempts": 4214,
+        "attempts": 4508,
         "hits": 0
       },
       "subtree|jitter": {
-        "attempts": 4229,
+        "attempts": 4508,
         "hits": 0
       },
       "crossover|addterm": {
-        "attempts": 4169,
+        "attempts": 4493,
         "hits": 1
       },
       "point|subtree": {
-        "attempts": 4125,
+        "attempts": 4429,
         "hits": 0
       },
       "addterm|crossover": {
-        "attempts": 4191,
+        "attempts": 4488,
         "hits": 0
       },
       "simplify|addterm": {
-        "attempts": 4053,
+        "attempts": 4340,
         "hits": 1
       },
       "subtree|prune": {
-        "attempts": 4209,
+        "attempts": 4524,
         "hits": 0
       },
       "jitter|point": {
-        "attempts": 4274,
+        "attempts": 4590,
         "hits": 0
       },
       "point|crossover": {
-        "attempts": 4149,
+        "attempts": 4442,
         "hits": 0
       },
       "simplify|crossover": {
-        "attempts": 4182,
+        "attempts": 4481,
         "hits": 1
       },
       "prune|addterm": {
-        "attempts": 4157,
+        "attempts": 4452,
         "hits": 0
       },
       "jitter|subtree": {
-        "attempts": 4338,
+        "attempts": 4663,
         "hits": 0
       },
       "addterm|point": {
-        "attempts": 4315,
+        "attempts": 4624,
         "hits": 1
       },
       "jitter|grow": {
-        "attempts": 4241,
+        "attempts": 4541,
         "hits": 0
       },
       "jitter|prune": {
-        "attempts": 4172,
+        "attempts": 4508,
         "hits": 0
       },
       "grow|jitter": {
-        "attempts": 4172,
+        "attempts": 4499,
         "hits": 0
       },
       "simplify|grow": {
-        "attempts": 4226,
+        "attempts": 4517,
         "hits": 0
       },
       "subtree|simplify": {
-        "attempts": 4210,
+        "attempts": 4529,
         "hits": 0
       },
       "addterm|subtree": {
-        "attempts": 4220,
+        "attempts": 4537,
         "hits": 1
       },
       "point|addterm": {
-        "attempts": 4226,
+        "attempts": 4498,
         "hits": 0
       },
       "crossover|grow": {
-        "attempts": 4183,
+        "attempts": 4504,
         "hits": 0
       },
       "point|simplify": {
-        "attempts": 4169,
+        "attempts": 4476,
         "hits": 0
       },
       "subtree|grow": {
-        "attempts": 4210,
+        "attempts": 4554,
         "hits": 0
       },
       "jitter|crossover": {
-        "attempts": 4245,
+        "attempts": 4570,
         "hits": 0
       },
       "simplify|prune": {
-        "attempts": 4127,
+        "attempts": 4448,
         "hits": 1
       },
       "prune|subtree": {
-        "attempts": 4220,
+        "attempts": 4553,
         "hits": 0
       },
       "crossover|simplify": {
-        "attempts": 4208,
+        "attempts": 4555,
         "hits": 1
       },
       "simplify|jitter": {
-        "attempts": 4061,
+        "attempts": 4362,
         "hits": 1
       },
       "addterm|jitter": {
-        "attempts": 4190,
+        "attempts": 4485,
         "hits": 0
       },
       "grow|addterm": {
-        "attempts": 4220,
+        "attempts": 4538,
         "hits": 0
       },
       "grow|crossover": {
-        "attempts": 4324,
+        "attempts": 4672,
         "hits": 0
       },
       "crossover|prune": {
-        "attempts": 4140,
+        "attempts": 4472,
         "hits": 0
       },
       "simplify|subtree": {
-        "attempts": 4184,
+        "attempts": 4500,
         "hits": 0
       },
       "subtree|point": {
-        "attempts": 4179,
+        "attempts": 4513,
         "hits": 0
       },
       "jitter|simplify": {
-        "attempts": 4270,
+        "attempts": 4593,
         "hits": 0
       },
       "simplify|point": {
-        "attempts": 4088,
+        "attempts": 4367,
         "hits": 0
       },
       "point|grow": {
-        "attempts": 4114,
+        "attempts": 4423,
         "hits": 0
       }
     },
     "composites": 4,
     "sigma": 2,
-    "stagnation": 17,
+    "stagnation": 18,
     "acceptMargin": 0.004,
     "budget": {
       "evaluations": 60000,
@@ -2052,6 +2052,16 @@
   ],
   "log": [
     {
+      "gen": 21,
+      "date": "2026-09-26",
+      "accepted": false,
+      "title": "无改进 — 维持 3.117%",
+      "body": [
+        "本轮评估 60,000 个候选，冠军一个都没被推翻。精英档案里有 0 个格子被刷新 — 主干没动，侧枝在长。",
+        "下一轮预算自动上调到 60,000 次评估。搜索不出结果时，先加算力，而不是先放宽验收标准。"
+      ]
+    },
+    {
       "gen": 20,
       "date": "2026-09-25",
       "accepted": false,
@@ -2277,23 +2287,23 @@
     }
   ],
   "stats": {
-    "generations": 20,
-    "totalEvaluations": 835319,
-    "totalProposed": 1273559,
+    "generations": 21,
+    "totalEvaluations": 895319,
+    "totalProposed": 1364809,
     "totalAccepted": 3,
-    "totalRejected": 17,
+    "totalRejected": 18,
     "totalVetoed": 1652,
     "llmProposals": 0,
     "llmAccepted": 0
   },
   "lastRun": {
-    "date": "2026-09-25",
-    "generation": 20,
-    "seed": 2038049465,
+    "date": "2026-09-26",
+    "generation": 21,
+    "seed": 1008914411,
     "evaluations": 60000,
-    "proposed": 91456,
+    "proposed": 91250,
     "accepted": false,
-    "elapsedMs": 141458,
+    "elapsedMs": 212446,
     "integrity": "ok",
     "vetoed": 0,
     "contenders": 0,
