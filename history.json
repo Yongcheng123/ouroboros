@@ -791,5 +791,31 @@
     "milestones": [
       "gen-30"
     ]
+  },
+  {
+    "gen": 31,
+    "date": "2026-10-06",
+    "seed": 2240710514,
+    "label": "daily",
+    "evaluations": 60000,
+    "proposed": 90735,
+    "accepted": false,
+    "op": null,
+    "opLabel": null,
+    "trainBefore": 3.117,
+    "trainAfter": 3.117,
+    "valAfter": 4.0465,
+    "testBefore": 4.0983,
+    "testAfter": 4.0983,
+    "vetoed": 0,
+    "contenders": 0,
+    "size": 35,
+    "sigma": 2,
+    "budget": 60000,
+    "hitRate": 0,
+    "cellHits": 0,
+    "elapsedMs": 211904,
+    "minted": null,
+    "milestones": []
   }
 ]
