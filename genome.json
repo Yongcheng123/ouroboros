@@ -8,7 +8,7 @@
     "repo": "https://github.com/Yongcheng123/ouroboros",
     "site": "https://yongcheng123.github.io/ouroboros/"
   },
-  "generation": 50,
+  "generation": 51,
   "suiteFingerprint": "af6d6118",
   "champion": {
     "expr": [
@@ -739,8 +739,22 @@
                 [
                   "log",
                   [
-                    "v",
-                    "g"
+                    "max",
+                    [
+                      "add",
+                      [
+                        "v",
+                        "i"
+                      ],
+                      [
+                        "v",
+                        "r"
+                      ]
+                    ],
+                    [
+                      "v",
+                      "r"
+                    ]
                   ]
                 ]
               ]
@@ -752,8 +766,25 @@
                 -0.00172
               ],
               [
-                "v",
-                "r"
+                "mul",
+                [
+                  "log",
+                  [
+                    "v",
+                    "r"
+                  ]
+                ],
+                [
+                  "min",
+                  [
+                    "v",
+                    "g"
+                  ],
+                  [
+                    "c",
+                    0.038189
+                  ]
+                ]
               ]
             ]
           ],
@@ -791,11 +822,11 @@
           ]
         ]
       ],
-      "train": 3.117,
-      "size": 35,
-      "bornGen": 3,
-      "bornOp": "crossover",
-      "test": 4.0983
+      "train": 3.1152,
+      "size": 44,
+      "bornGen": 51,
+      "bornOp": "x_subtree_crossover",
+      "test": 4.004
     },
     {
       "id": "49-64",
@@ -806,72 +837,138 @@
         [
           "max",
           [
+            "c",
+            -0.427185
+          ],
+          [
             "add",
             [
-              "mul",
+              "max",
               [
-                "mul",
+                "add",
                 [
-                  "min",
+                  "mul",
                   [
-                    "c",
-                    2.202808
-                  ],
-                  [
-                    "log",
+                    "mul",
                     [
-                      "sub",
+                      "min",
                       [
                         "c",
-                        0
+                        2.202808
                       ],
+                      [
+                        "log",
+                        [
+                          "sub",
+                          [
+                            "c",
+                            0
+                          ],
+                          [
+                            "v",
+                            "r"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "sqrt",
                       [
                         "v",
                         "r"
                       ]
                     ]
-                  ]
-                ],
-                [
-                  "sqrt",
+                  ],
                   [
-                    "v",
-                    "r"
-                  ]
-                ]
-              ],
-              [
-                "mul",
-                [
-                  "neg",
-                  [
-                    "min",
+                    "mul",
                     [
-                      "v",
-                      "g"
-                    ],
-                    [
-                      "sq",
+                      "neg",
                       [
-                        "max",
-                        [
-                          "v",
-                          "i"
-                        ],
+                        "min",
                         [
                           "v",
                           "g"
+                        ],
+                        [
+                          "sq",
+                          [
+                            "max",
+                            [
+                              "v",
+                              "i"
+                            ],
+                            [
+                              "v",
+                              "g"
+                            ]
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "log",
+                      [
+                        "max",
+                        [
+                          "add",
+                          [
+                            "v",
+                            "i"
+                          ],
+                          [
+                            "v",
+                            "r"
+                          ]
+                        ],
+                        [
+                          "v",
+                          "r"
                         ]
                       ]
                     ]
                   ]
                 ],
                 [
+                  "mul",
+                  [
+                    "c",
+                    -0.00172
+                  ],
+                  [
+                    "mul",
+                    [
+                      "log",
+                      [
+                        "v",
+                        "r"
+                      ]
+                    ],
+                    [
+                      "min",
+                      [
+                        "v",
+                        "g"
+                      ],
+                      [
+                        "c",
+                        0.038189
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "mul",
+                [
                   "log",
                   [
                     "v",
-                    "g"
+                    "r"
                   ]
+                ],
+                [
+                  "v",
+                  "k"
                 ]
               ]
             ],
@@ -879,121 +976,19 @@
               "mul",
               [
                 "c",
-                -0.00172
+                0.5
               ],
-              [
-                "v",
-                "r"
-              ]
-            ]
-          ],
-          [
-            "mul",
-            [
-              "log",
               [
                 "max",
                 [
-                  "add",
-                  [
-                    "mul",
-                    [
-                      "mul",
-                      [
-                        "min",
-                        [
-                          "c",
-                          2.202808
-                        ],
-                        [
-                          "log",
-                          [
-                            "sub",
-                            [
-                              "c",
-                              0
-                            ],
-                            [
-                              "v",
-                              "r"
-                            ]
-                          ]
-                        ]
-                      ],
-                      [
-                        "sqrt",
-                        [
-                          "v",
-                          "r"
-                        ]
-                      ]
-                    ],
-                    [
-                      "mul",
-                      [
-                        "neg",
-                        [
-                          "min",
-                          [
-                            "v",
-                            "g"
-                          ],
-                          [
-                            "sq",
-                            [
-                              "max",
-                              [
-                                "v",
-                                "i"
-                              ],
-                              [
-                                "v",
-                                "g"
-                              ]
-                            ]
-                          ]
-                        ]
-                      ],
-                      [
-                        "log",
-                        [
-                          "v",
-                          "g"
-                        ]
-                      ]
-                    ]
-                  ],
-                  [
-                    "mul",
-                    [
-                      "c",
-                      -0.00172
-                    ],
-                    [
-                      "v",
-                      "r"
-                    ]
-                  ]
+                  "v",
+                  "g"
                 ],
                 [
-                  "mul",
-                  [
-                    "log",
-                    [
-                      "v",
-                      "r"
-                    ]
-                  ],
-                  [
-                    "v",
-                    "k"
-                  ]
+                  "c",
+                  0.5
                 ]
               ]
-            ],
-            [
-              "v",
-              "k"
             ]
           ]
         ],
@@ -1001,26 +996,19 @@
           "mul",
           [
             "c",
-            0.5
+            0.559531
           ],
           [
-            "max",
-            [
-              "v",
-              "g"
-            ],
-            [
-              "c",
-              0.5
-            ]
+            "c",
+            0.871637
           ]
         ]
       ],
-      "train": 3.117,
-      "size": 63,
-      "bornGen": 3,
-      "bornOp": "crossover",
-      "test": 4.0983
+      "train": 3.1152,
+      "size": 50,
+      "bornGen": 51,
+      "bornOp": "grow+addterm",
+      "test": 4.004
     }
   ],
   "search": {
@@ -1029,9 +1017,9 @@
         "id": "point",
         "kind": "base",
         "born": 0,
-        "q": 0.000025,
-        "weight": 0.087143,
-        "attempts": 342006,
+        "q": 0.000021,
+        "weight": 0.046511,
+        "attempts": 349999,
         "hits": 6,
         "bestGain": 0
       },
@@ -1039,9 +1027,9 @@
         "id": "subtree",
         "kind": "base",
         "born": 0,
-        "q": 0.000023,
-        "weight": 0.082571,
-        "attempts": 337522,
+        "q": 0.000019,
+        "weight": 0.044939,
+        "attempts": 345027,
         "hits": 10,
         "bestGain": 0.522
       },
@@ -1049,19 +1037,19 @@
         "id": "grow",
         "kind": "base",
         "born": 0,
-        "q": 0.000024,
-        "weight": 0.084857,
-        "attempts": 343651,
-        "hits": 15,
+        "q": 0.000301,
+        "weight": 0.266658,
+        "attempts": 351342,
+        "hits": 16,
         "bestGain": 0
       },
       {
         "id": "prune",
         "kind": "base",
         "born": 0,
-        "q": 0.000023,
-        "weight": 0.082571,
-        "attempts": 339064,
+        "q": 0.000019,
+        "weight": 0.044939,
+        "attempts": 346544,
         "hits": 12,
         "bestGain": 0
       },
@@ -1069,9 +1057,9 @@
         "id": "jitter",
         "kind": "base",
         "born": 0,
-        "q": 0.000029,
-        "weight": 0.096286,
-        "attempts": 364258,
+        "q": 0.000024,
+        "weight": 0.04887,
+        "attempts": 372914,
         "hits": 14,
         "bestGain": 0
       },
@@ -1079,9 +1067,9 @@
         "id": "crossover",
         "kind": "base",
         "born": 0,
-        "q": 0.000023,
-        "weight": 0.082571,
-        "attempts": 341799,
+        "q": 0.000019,
+        "weight": 0.044939,
+        "attempts": 349179,
         "hits": 16,
         "bestGain": 0.0622
       },
@@ -1089,9 +1077,9 @@
         "id": "addterm",
         "kind": "base",
         "born": 0,
-        "q": 0.000023,
-        "weight": 0.082571,
-        "attempts": 339875,
+        "q": 0.000019,
+        "weight": 0.044939,
+        "attempts": 347193,
         "hits": 25,
         "bestGain": 0
       },
@@ -1099,9 +1087,9 @@
         "id": "simplify",
         "kind": "base",
         "born": 0,
-        "q": 0.000025,
-        "weight": 0.087143,
-        "attempts": 343188,
+        "q": 0.000021,
+        "weight": 0.046511,
+        "attempts": 351070,
         "hits": 8,
         "bestGain": 0
       },
@@ -1113,10 +1101,10 @@
           "crossover"
         ],
         "born": 2,
-        "q": 0.000021,
-        "weight": 0.078,
-        "attempts": 311830,
-        "hits": 0,
+        "q": 0.000319,
+        "weight": 0.280811,
+        "attempts": 318990,
+        "hits": 1,
         "bestGain": 0
       },
       {
@@ -1127,9 +1115,9 @@
           "simplify"
         ],
         "born": 3,
-        "q": 0.000021,
-        "weight": 0.078,
-        "attempts": 314083,
+        "q": 0.000017,
+        "weight": 0.043366,
+        "attempts": 321170,
         "hits": 0,
         "bestGain": 0
       },
@@ -1141,9 +1129,9 @@
           "grow"
         ],
         "born": 4,
-        "q": 0.000021,
-        "weight": 0.078,
-        "attempts": 312450,
+        "q": 0.000017,
+        "weight": 0.043366,
+        "attempts": 319550,
         "hits": 0,
         "bestGain": 0
       },
@@ -1155,242 +1143,242 @@
           "addterm"
         ],
         "born": 5,
-        "q": 0.000022,
-        "weight": 0.080286,
-        "attempts": 318267,
+        "q": 0.000018,
+        "weight": 0.044152,
+        "attempts": 325460,
         "hits": 1,
         "bestGain": 0
       }
     ],
     "pairs": {
       "prune|jitter": {
-        "attempts": 13308,
+        "attempts": 13608,
         "hits": 0
       },
       "grow|subtree": {
-        "attempts": 13628,
+        "attempts": 13939,
         "hits": 0
       },
       "crossover|point": {
-        "attempts": 13209,
+        "attempts": 13482,
         "hits": 0
       },
       "subtree|crossover": {
-        "attempts": 13170,
+        "attempts": 13468,
         "hits": 1
       },
       "grow|simplify": {
-        "attempts": 13495,
+        "attempts": 13821,
         "hits": 0
       },
       "addterm|simplify": {
-        "attempts": 13319,
+        "attempts": 13600,
         "hits": 0
       },
       "grow|prune": {
-        "attempts": 13458,
+        "attempts": 13775,
         "hits": 0
       },
       "prune|point": {
-        "attempts": 13437,
+        "attempts": 13719,
         "hits": 0
       },
       "grow|point": {
-        "attempts": 13463,
+        "attempts": 13760,
         "hits": 0
       },
       "subtree|addterm": {
-        "attempts": 13301,
+        "attempts": 13626,
         "hits": 0
       },
       "crossover|jitter": {
-        "attempts": 13539,
+        "attempts": 13824,
         "hits": 0
       },
       "crossover|subtree": {
-        "attempts": 13799,
+        "attempts": 14101,
         "hits": 0
       },
       "jitter|addterm": {
-        "attempts": 14292,
+        "attempts": 14678,
         "hits": 0
       },
       "point|jitter": {
-        "attempts": 13516,
+        "attempts": 13876,
         "hits": 0
       },
       "prune|simplify": {
-        "attempts": 13234,
+        "attempts": 13527,
         "hits": 1
       },
       "addterm|grow": {
-        "attempts": 13232,
+        "attempts": 13526,
         "hits": 1
       },
       "prune|crossover": {
-        "attempts": 13247,
+        "attempts": 13550,
         "hits": 0
       },
       "addterm|prune": {
-        "attempts": 13533,
+        "attempts": 13825,
         "hits": 0
       },
       "point|prune": {
-        "attempts": 13269,
+        "attempts": 13576,
         "hits": 0
       },
       "prune|grow": {
-        "attempts": 13501,
+        "attempts": 13794,
         "hits": 0
       },
       "subtree|jitter": {
-        "attempts": 13334,
+        "attempts": 13628,
         "hits": 0
       },
       "crossover|addterm": {
-        "attempts": 13490,
+        "attempts": 13761,
         "hits": 1
       },
       "point|subtree": {
-        "attempts": 13493,
+        "attempts": 13812,
         "hits": 0
       },
       "addterm|crossover": {
-        "attempts": 13267,
+        "attempts": 13572,
         "hits": 0
       },
       "simplify|addterm": {
-        "attempts": 13492,
+        "attempts": 13801,
         "hits": 2
       },
       "subtree|prune": {
-        "attempts": 13316,
+        "attempts": 13595,
         "hits": 0
       },
       "jitter|point": {
-        "attempts": 14607,
+        "attempts": 14946,
         "hits": 0
       },
       "point|crossover": {
-        "attempts": 13551,
+        "attempts": 13856,
         "hits": 0
       },
       "simplify|crossover": {
-        "attempts": 13494,
+        "attempts": 13785,
         "hits": 1
       },
       "prune|addterm": {
-        "attempts": 13336,
+        "attempts": 13658,
         "hits": 0
       },
       "jitter|subtree": {
-        "attempts": 14593,
+        "attempts": 14926,
         "hits": 0
       },
       "addterm|point": {
-        "attempts": 13586,
+        "attempts": 13895,
         "hits": 1
       },
       "jitter|grow": {
-        "attempts": 14202,
+        "attempts": 14515,
         "hits": 0
       },
       "jitter|prune": {
-        "attempts": 14373,
+        "attempts": 14717,
         "hits": 0
       },
       "grow|jitter": {
-        "attempts": 13437,
+        "attempts": 13747,
         "hits": 0
       },
       "simplify|grow": {
-        "attempts": 13646,
+        "attempts": 13969,
         "hits": 0
       },
       "subtree|simplify": {
-        "attempts": 13507,
+        "attempts": 13812,
         "hits": 0
       },
       "addterm|subtree": {
-        "attempts": 13317,
+        "attempts": 13603,
         "hits": 1
       },
       "point|addterm": {
-        "attempts": 13529,
+        "attempts": 13845,
         "hits": 0
       },
       "crossover|grow": {
-        "attempts": 13325,
+        "attempts": 13628,
         "hits": 0
       },
       "point|simplify": {
-        "attempts": 13501,
+        "attempts": 13822,
         "hits": 0
       },
       "subtree|grow": {
-        "attempts": 13236,
+        "attempts": 13559,
         "hits": 0
       },
       "jitter|crossover": {
-        "attempts": 14436,
+        "attempts": 14757,
         "hits": 0
       },
       "simplify|prune": {
-        "attempts": 13474,
+        "attempts": 13774,
         "hits": 1
       },
       "prune|subtree": {
-        "attempts": 13233,
+        "attempts": 13505,
         "hits": 0
       },
       "crossover|simplify": {
-        "attempts": 13459,
+        "attempts": 13751,
         "hits": 1
       },
       "simplify|jitter": {
-        "attempts": 13396,
+        "attempts": 13711,
         "hits": 1
       },
       "addterm|jitter": {
-        "attempts": 13169,
+        "attempts": 13491,
         "hits": 0
       },
       "grow|addterm": {
-        "attempts": 13410,
-        "hits": 0
+        "attempts": 13715,
+        "hits": 1
       },
       "grow|crossover": {
-        "attempts": 13655,
+        "attempts": 13953,
         "hits": 0
       },
       "crossover|prune": {
-        "attempts": 13246,
+        "attempts": 13549,
         "hits": 0
       },
       "simplify|subtree": {
-        "attempts": 13506,
+        "attempts": 13800,
         "hits": 0
       },
       "subtree|point": {
-        "attempts": 13388,
+        "attempts": 13701,
         "hits": 0
       },
       "jitter|simplify": {
-        "attempts": 14374,
+        "attempts": 14744,
         "hits": 0
       },
       "simplify|point": {
-        "attempts": 13250,
+        "attempts": 13568,
         "hits": 0
       },
       "point|grow": {
-        "attempts": 13489,
+        "attempts": 13817,
         "hits": 0
       }
     },
     "composites": 4,
     "sigma": 2,
-    "stagnation": 47,
+    "stagnation": 48,
     "acceptMargin": 0.004,
     "budget": {
       "evaluations": 60000,
@@ -2059,6 +2047,16 @@
   ],
   "log": [
     {
+      "gen": 51,
+      "date": "2026-10-26",
+      "accepted": false,
+      "title": "无改进 — 维持 3.117%",
+      "body": [
+        "本轮评估 60,000 个候选，冠军一个都没被推翻。精英档案里有 2 个格子被刷新 — 主干没动，侧枝在长。",
+        "下一轮预算自动上调到 60,000 次评估。搜索不出结果时，先加算力，而不是先放宽验收标准。"
+      ]
+    },
+    {
       "gen": 50,
       "date": "2026-10-25",
       "accepted": false,
@@ -2448,42 +2446,31 @@
         "本轮评估 60,000 个候选，冠军一个都没被推翻。精英档案里有 0 个格子被刷新 — 主干没动，侧枝在长。",
         "下一轮预算自动上调到 60,000 次评估。搜索不出结果时，先加算力，而不是先放宽验收标准。"
       ]
-    },
-    {
-      "gen": 11,
-      "date": "2026-09-17",
-      "accepted": false,
-      "title": "无改进 — 维持 3.117%",
-      "body": [
-        "本轮评估 60,000 个候选，冠军一个都没被推翻。精英档案里有 0 个格子被刷新 — 主干没动，侧枝在长。",
-        "下一轮预算自动上调到 60,000 次评估。搜索不出结果时，先加算力，而不是先放宽验收标准。",
-        "没找到东西就放大搜索：退火步长 σ 1.787 → 2.000。连续第 8 晚无进展，已进入重加热状态 —— 18% 的试验改为完全随机重启，算子串联概率从 12% 提到 28%。"
-      ]
     }
   ],
   "stats": {
-    "generations": 50,
-    "totalEvaluations": 2635319,
-    "totalProposed": 4007993,
+    "generations": 51,
+    "totalEvaluations": 2695319,
+    "totalProposed": 4098438,
     "totalAccepted": 3,
-    "totalRejected": 47,
+    "totalRejected": 48,
     "totalVetoed": 1652,
     "llmProposals": 0,
     "llmAccepted": 0
   },
   "lastRun": {
-    "date": "2026-10-25",
-    "generation": 50,
-    "seed": 3677128724,
+    "date": "2026-10-26",
+    "generation": 51,
+    "seed": 1504569030,
     "evaluations": 60000,
-    "proposed": 90981,
+    "proposed": 90445,
     "accepted": false,
-    "elapsedMs": 126987,
+    "elapsedMs": 127284,
     "integrity": "ok",
     "vetoed": 0,
     "contenders": 0,
-    "hitRate": 0,
-    "cellHits": 0,
+    "hitRate": 0.00002,
+    "cellHits": 2,
     "sigma": 2,
     "budget": 60000,
     "source": "gp",
