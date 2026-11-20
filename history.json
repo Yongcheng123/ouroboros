@@ -1961,5 +1961,31 @@
     "elapsedMs": 169140,
     "minted": null,
     "milestones": []
+  },
+  {
+    "gen": 76,
+    "date": "2026-11-20",
+    "seed": 25155762,
+    "label": "daily",
+    "evaluations": 60000,
+    "proposed": 87455,
+    "accepted": false,
+    "op": null,
+    "opLabel": null,
+    "trainBefore": 3.117,
+    "trainAfter": 3.117,
+    "valAfter": 4.0465,
+    "testBefore": 4.0983,
+    "testAfter": 4.0983,
+    "vetoed": 0,
+    "contenders": 0,
+    "size": 35,
+    "sigma": 2,
+    "budget": 60000,
+    "hitRate": 0,
+    "cellHits": 0,
+    "elapsedMs": 165722,
+    "minted": null,
+    "milestones": []
   }
 ]
